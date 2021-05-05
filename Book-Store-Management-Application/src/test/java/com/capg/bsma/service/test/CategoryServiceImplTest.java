@@ -1,9 +1,9 @@
 package com.capg.bsma.service.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -15,16 +15,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import com.capg.bsma.entity.BookEntity;
 import com.capg.bsma.entity.CategoryEntity;
-import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.exception.BMSException;
-import com.capg.bsma.model.AddressModel;
-import com.capg.bsma.model.BookModel;
 import com.capg.bsma.model.CategoryModel;
-import com.capg.bsma.model.CustomerModel;
 import com.capg.bsma.repo.ICategoryRepository;
 
 import com.capg.bsma.service.CategoryServiceImpl;
@@ -40,7 +33,7 @@ public class CategoryServiceImplTest {
 					 */
 	private CategoryServiceImpl csImpl;
 
-	/*
+	/**
 	 * Test Case- list of all category
 	 */
 	@Test
@@ -59,7 +52,7 @@ public class CategoryServiceImplTest {
 		assertEquals(expected, actual);
 	}
 
-	/*
+	/**
 	 * Test Case- add category details
 	 */
 	@Test
@@ -69,13 +62,15 @@ public class CategoryServiceImplTest {
 
 		CategoryModel expected = new CategoryModel(102L, "Biography");
 
+		Mockito.when(categoryrepo.existsById(testdata.getCategoryId())).thenReturn(false);
+
 		Mockito.when(categoryrepo.save(testdata)).thenReturn(testdata);
 		CategoryModel actual = csImpl.addCategory(expected);
 		assertEquals(expected, actual);
 	}
 
-	/*
-	 * update category details
+	/**
+	 * Test Case- update category details
 	 */
 	@Test
 	@DisplayName("CategoryServiceImpl::editCategory should edit Categories in database")
@@ -84,20 +79,20 @@ public class CategoryServiceImplTest {
 
 		CategoryModel expected = new CategoryModel(102L, "Biography");
 
+		Mockito.when(categoryrepo.existsById(testdata.getCategoryId())).thenReturn(true);
+
 		Mockito.when(categoryrepo.save(testdata)).thenReturn(testdata);
 		CategoryModel actual = csImpl.editCategory(expected);
 		assertEquals(expected, actual);
 	}
 
-	/*
-	 * remove category details
+	/**
+	 * Test Case-remove category details
 	 */
 	@Test
 	@DisplayName("CategoryServiceImpl::removeCategory should remove Category in database")
 	void testRemoveCategory() throws BMSException {
 		CategoryEntity testdata = new CategoryEntity(104L, "Autobiography");
-
-		CategoryModel expected = new CategoryModel(104L, "Autobiography");
 
 		Mockito.when(categoryrepo.findById(104L)).thenReturn(Optional.of(testdata));
 		Mockito.doNothing().when(categoryrepo).deleteById(104L);
@@ -105,8 +100,8 @@ public class CategoryServiceImplTest {
 		assertTrue(result);
 	}
 
-	/*
-	 * view category by id
+	/**
+	 * Test Case-view category by id
 	 */
 	@Test
 	@DisplayName("ICategoryServiceImpl::viewCATEGORY should return list of existing packages as categorymodel ")

@@ -1,13 +1,13 @@
 package com.capg.bsma.model;
 
-import java.math.BigDecimal;
-
-import javax.persistence.Embeddable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class OrderDetailsModel {
 
+	/*
+	 * validations for all private members
+	 */
 	@NotNull(message = "order detail id cannot be null")
 	@NotBlank(message = "order detail id cannot be blank")
 	private Long order_detail_Id;
@@ -21,10 +21,12 @@ public class OrderDetailsModel {
 	@NotNull(message = "book id cannot be null")
 	private Long book_Id;
 
+	// default constructor
 	public OrderDetailsModel() {
 		// no implementation
 	}
 
+	// parameter constructor
 	public OrderDetailsModel(
 			@NotNull(message = "order detail id cannot be null") @NotBlank(message = "order detail id cannot be blank") Long order_detail_Id,
 			@NotNull(message = "quantity cannot be null") Long quantity,
@@ -72,6 +74,9 @@ public class OrderDetailsModel {
 		this.book_Id = book_Id;
 	}
 
+	/*
+	 * hashcode generating
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -83,6 +88,9 @@ public class OrderDetailsModel {
 		return result;
 	}
 
+	/*
+	 * equals generating
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -115,6 +123,9 @@ public class OrderDetailsModel {
 		return true;
 	}
 
+	/*
+	 * to string generating
+	 */
 	@Override
 	public String toString() {
 		return "OrderDetailsModel [order_detail_Id=" + order_detail_Id + ", quantity=" + quantity + ", bookorder_id="

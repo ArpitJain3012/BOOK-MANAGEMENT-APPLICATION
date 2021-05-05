@@ -3,16 +3,17 @@ package com.capg.bsma.model;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class ReviewModel {
 
+	/*
+	 * validations for all private members
+	 */
 	@NotNull(message = "review id cannot be null")
 	@NotBlank(message = "review id cannot be blank")
 	private Long reviewId;
@@ -38,10 +39,12 @@ public class ReviewModel {
 	@PastOrPresent(message = "join date cannot be future date")
 	private LocalDate reviewOn;
 
+	// default constructor
 	public ReviewModel() {
 		// Intentionally left blank
 	}
 
+	// parametrized constructor
 	public ReviewModel(
 			@NotNull(message = "review id cannot be null") @NotBlank(message = "review id cannot be blank") Long reviewId,
 			@NotNull(message = "review id cannot be null") @NotBlank(message = "review id cannot be blank") Long custId,
@@ -119,6 +122,9 @@ public class ReviewModel {
 		this.bookid = bookid;
 	}
 
+	/*
+	 * generating hashcode
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -133,6 +139,9 @@ public class ReviewModel {
 		return result;
 	}
 
+	/*
+	 * generating equals method
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -180,6 +189,9 @@ public class ReviewModel {
 		return true;
 	}
 
+	/*
+	 * generating to string
+	 */
 	@Override
 	public String toString() {
 		return String.format("ReviewModel [reviewId=%s, headline=%s, comment=%s, rating=%s, reviewOn=%s]", reviewId,

@@ -1,7 +1,7 @@
 package com.capg.bsma.service;
 
 import java.util.List;
-import java.util.Optional;
+
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -9,13 +9,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.capg.bsma.entity.BookEntity;
 import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.CustomerModel;
-import com.capg.bsma.repo.IBookRepository;
 import com.capg.bsma.repo.ICustomerRepository;
 
+/*
+ * implementing service method for customer
+ */
 @Service
 public class CustomerServiceImpl implements ICustomerService {
 
@@ -25,10 +26,12 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	private EMParserCustomer parser;
 
+	// default constructor
 	public CustomerServiceImpl() {
 		this.parser = new EMParserCustomer();
 	}
 
+	// parameter constructor
 	public CustomerServiceImpl(ICustomerRepository icr) {
 		super();
 		this.icr = icr;

@@ -1,11 +1,8 @@
 package com.capg.bsma.model;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 /*
  * addressmodel class use to embedding address data into customer 
@@ -13,8 +10,10 @@ import org.hibernate.validator.constraints.NotBlank;
 @Embeddable
 public class AddressModel {
 
+	/*
+	 * validations for all private members
+	 */
 	@NotNull(message = "House No. cannot be null")
-	@NotBlank(message = "House No. cannot be blank")
 	private String houseno;
 
 	@NotNull(message = "City name cannot be null")
@@ -27,6 +26,7 @@ public class AddressModel {
 	@Pattern(regexp = "[a-zA-Z0-9]{1,6}", message = "Invalid Pincode")
 	private String pincode;
 
+	//default constructor
 	public AddressModel() {
 		// no implementation
 	}
@@ -34,8 +34,7 @@ public class AddressModel {
 	/*
 	 * generating constructors using field
 	 */
-	public AddressModel(
-			@NotNull(message = "House No. cannot be null") @NotBlank(message = "House No. cannot be blank") String houseno,
+	public AddressModel(@NotNull(message = "House No. cannot be null") String houseno,
 			@NotNull(message = "City name cannot be null") String city,
 			@NotNull(message = "Country name cannot be null") String country,
 			@NotNull(message = "Pincode cannot be null") @Pattern(regexp = "[a-zA-Z0-9]{1,6}", message = "Invalid Pincode") String pincode) {

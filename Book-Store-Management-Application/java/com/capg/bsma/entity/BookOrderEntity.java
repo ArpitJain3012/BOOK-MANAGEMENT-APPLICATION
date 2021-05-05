@@ -1,44 +1,51 @@
 package com.capg.bsma.entity;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.capg.bsma.model.OrderDetailsModel;
 
+/*
+ * linking bookorder database with BookOrderEntity
+ */
 @Entity
 @Table(name = "BOOKORDER")
 public class BookOrderEntity {
+	// primary key
 	@Id
 	@Column(name = "order_Id")
 	private Long orderId;
 
+	// order date for book
 	@Column(name = "Order_Date", length = 20)
 	private LocalDate OrderDate;
 
+	// order total for book
 	@Column(name = "Order_Total", length = 20)
 	private BigDecimal OrderTotal;
 
+	// status of order( example="pending")..
 	@Column(name = "status", length = 20)
 	private String status;
 
+	// payment method like online or C.O.D
 	@Column(name = "payment_Method", length = 10)
 	private String paymentMethod;
 
+	// customers phone number
 	@Column(name = "recip_phone")
 	private String recipientphone;
 
+	// customers name
 	@Column(name = "recip_Name")
 	private String recipientName;
 
@@ -51,13 +58,15 @@ public class BookOrderEntity {
 	/*
 	 * using one to many association for mapping with order details entity
 	 */
-	@OneToMany(mappedBy = "bookorders", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "bookorders", cascade = CascadeType.ALL)
 	private Set<OrderDetailEntity> orderdetail;
 
+	// default constructor
 	public BookOrderEntity() {
 		// no implementation
 	}
 
+	// parameterized constructor
 	public BookOrderEntity(Long orderId, LocalDate orderDate, BigDecimal orderTotal, String status,
 			String paymentMethod, String recipientphone, String recipientName, CustomerEntity cust) {
 		super();
@@ -70,6 +79,9 @@ public class BookOrderEntity {
 		this.recipientName = recipientName;
 		this.cust = cust;
 	}
+	/*
+	 * getters and setters
+	 */
 
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
@@ -143,6 +155,9 @@ public class BookOrderEntity {
 		this.orderdetail = orderdetail;
 	}
 
+	/*
+	 * hashcode generating
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -157,6 +172,9 @@ public class BookOrderEntity {
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
+	/*
+	 * equals method generating
+	 */
 
 	@Override
 	public boolean equals(Object obj) {
@@ -210,6 +228,9 @@ public class BookOrderEntity {
 		return true;
 	}
 
+	/*
+	 * to string generating
+	 */
 	@Override
 	public String toString() {
 		return String.format(

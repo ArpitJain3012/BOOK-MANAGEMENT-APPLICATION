@@ -1,6 +1,7 @@
 package com.capg.bsma.service;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -8,15 +9,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.capg.bsma.entity.CategoryEntity;
-import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.entity.OrderDetailEntity;
 import com.capg.bsma.exception.BMSException;
-import com.capg.bsma.model.CategoryModel;
 import com.capg.bsma.model.OrderDetailsModel;
-import com.capg.bsma.repo.IBookRepository;
-import com.capg.bsma.repo.ICustomerRepository;
 import com.capg.bsma.repo.IOrderDetailRepository;
+/*
+ * implementing service method for customer
+ */
 
 @Service
 public class OrderDetailServiceImpl implements IOrderDetailService {
@@ -27,10 +26,12 @@ public class OrderDetailServiceImpl implements IOrderDetailService {
 	@Autowired
 	private EMParserOrderDetails parser;
 
+//default constructor
 	public OrderDetailServiceImpl() {
 		this.parser = new EMParserOrderDetails();
 	}
 
+//parameter constructor
 	public OrderDetailServiceImpl(IOrderDetailRepository iodr) {
 		super();
 		this.iodr = iodr;

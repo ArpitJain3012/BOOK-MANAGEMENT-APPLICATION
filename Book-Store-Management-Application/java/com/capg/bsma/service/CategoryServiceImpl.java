@@ -1,6 +1,7 @@
 package com.capg.bsma.service;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -8,13 +9,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.capg.bsma.entity.BookEntity;
 import com.capg.bsma.entity.CategoryEntity;
 import com.capg.bsma.exception.BMSException;
-import com.capg.bsma.model.BookModel;
 import com.capg.bsma.model.CategoryModel;
 import com.capg.bsma.repo.ICategoryRepository;
 
+/*
+ * implementing service method for category
+ */
 @Service
 public class CategoryServiceImpl implements ICategoryService {
 
@@ -24,10 +26,12 @@ public class CategoryServiceImpl implements ICategoryService {
 	@Autowired
 	private EMParserCategory parser;
 
+	// default constructor
 	public CategoryServiceImpl() {
 		this.parser = new EMParserCategory();
 	}
 
+	// parameter constructor
 	public CategoryServiceImpl(ICategoryRepository catrepo) {
 		super();
 		this.catrepo = catrepo;

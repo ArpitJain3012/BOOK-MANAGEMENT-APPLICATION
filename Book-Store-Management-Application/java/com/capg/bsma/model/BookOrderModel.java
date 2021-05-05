@@ -1,11 +1,9 @@
 package com.capg.bsma.model;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import java.time.LocalDate;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -17,6 +15,9 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class BookOrderModel {
 
+	/*
+	 * validations for all private members
+	 */
 	@NotNull(message = " order Id cannot be null")
 	@NotBlank(message = "orderId cannot be blank")
 	private Long orderId;
@@ -48,10 +49,12 @@ public class BookOrderModel {
 	@NotNull(message = "recipientName cannot be null")
 	private String recipientName;
 
+	// default constructor
 	public BookOrderModel() {
 		// no implementation
 	}
 
+	// parameter constructor
 	public BookOrderModel(
 			@NotNull(message = " order Id cannot be null") @NotBlank(message = "orderId cannot be blank") Long orderId,
 			@NotNull(message = " order Id cannot be null") @NotBlank(message = "orderId cannot be blank") Long custId,
@@ -139,6 +142,9 @@ public class BookOrderModel {
 		this.custId = custId;
 	}
 
+	/*
+	 * hashcode genrating
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -154,6 +160,9 @@ public class BookOrderModel {
 		return result;
 	}
 
+	/*
+	 * equals generating
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -206,6 +215,9 @@ public class BookOrderModel {
 		return true;
 	}
 
+	/*
+	 * to string generating
+	 */
 	@Override
 	public String toString() {
 		return String.format(

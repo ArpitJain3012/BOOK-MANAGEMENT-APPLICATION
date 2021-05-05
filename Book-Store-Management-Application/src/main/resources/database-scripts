@@ -20,6 +20,29 @@
 	  INSERT INTO Customer
 	 VALUES(3,'abhijeet@gmail.com','Abhijeet Singh','abhijeet123','9546461798','21-feb-2021','55cd','Toronto','CANADA','M4B 1B3');
 		 
+		INSERT INTO Customer
+	 VALUES(6,'punya@gmail.com','Punyakirti Rani','punyakr123','9549061798','01-feb-2021','51a','Patparganj','INDIA','110092');
+		 
+		 INSERT INTO Customer
+	 VALUES(5,'akshitg@gmail.com','Akshit Goel','akshit523','8846461798','11-jan-2021','450f','Patiala','INDIA','147001');
+		 
+		 
+		INSERT INTO Customer
+	 VALUES(8,'pulkityadav@gmail.com','Pulkit Yadav','pulkyad123','9503461798','21-mar-2021','110b','Dhappar','INDIA','147506');
+		 
+		 INSERT INTO Customer
+	 VALUES(7,'yash546@gmail.com','Yash Kushwaha','yshkush123','9876461798','19-jan-2021','789f','Ranchi','INDIA','834001');
+		 
+		 
+		 INSERT INTO Customer
+	 VALUES(8,'yachnasingh5@gmail.com','Yachna Singh','yych7904','8847561798','05-mar-2021','976m','Tokyo','JAPAN','100-0000');
+		 
+		 
+		 INSERT INTO Customer
+	 VALUES(9,'shubhamk@gmail.com','Shubham Kumar','shubhk123','9546400987','09-feb-2021','90cd','Toronto','CANADA','M4B 1B3');
+		 
+		 INSERT INTO Customer
+	 VALUES(10,'kartikmishra@gmail.com','Kartik Mishra','karmisht009','8796461798','10-jan-2021','114t','Meerut','INDIA','250001');
 		
 		 
 	CREATE TABLE CATEGORY (
@@ -34,6 +57,28 @@
 	
 	INSERT INTO Category (category_Id,category_Name)
 	VALUES(12,'history');
+	
+	INSERT INTO Category (category_Id,category_Name)
+	VALUES(13,'biography');
+	
+	INSERT INTO Category (category_Id,category_Name)
+	VALUES(14,'autobiography');
+	
+	INSERT INTO Category (category_Id,category_Name)
+	VALUES(15,'fiction');
+	
+	INSERT INTO Category (category_Id,category_Name)
+	VALUES(16,'horror');
+	
+	INSERT INTO Category (category_Id,category_Name)
+	VALUES(17,'thriller');
+	
+	INSERT INTO Category (category_Id,category_Name)
+	VALUES(18,'business');
+	
+	INSERT INTO Category (category_Id,category_Name)
+	VALUES(19,'travel');
+	
 	
 	CREATE TABLE BOOKS (
 	book_Id      number(19)    CONSTRAINTS books_book_Id_pk PRIMARY KEY,
@@ -53,6 +98,27 @@
 	INSERT INTO Books
 	VALUES (101,' Gullivers Travels','Jonathan Swift','story about a man who drove to the island of Lilliput','17984562',900, '26-oct-1726','30-aug-2017',11);
 	
+	INSERT INTO Books
+	VALUES (102,'Harry Potter','J K Rowling','story about Hogwarts life and magic','3456789432554',800, '26-jun-1996','30-aug-2005',17);
+	
+	INSERT INTO Books
+	VALUES (106,'Sapiens','Yuval Noah','brief history of humankind','7878789432908',550, '07-apr-2011','01-aug-2014',12);
+	
+	INSERT INTO Books
+	VALUES (107,'Steve jobs','Walter Isaacson','life story of Steve Jobs','9856789432908',450, '24-oct-2011','30-nov-2015',13);
+	
+	INSERT INTO Books
+	VALUES (109,'Dracula','Bram Stoker','horror novel','8876789432999',460, '26-may-1897','30-apr-2008',16);
+	
+	INSERT INTO Books
+	VALUES (110,'Pride and Prejudice','Jane Austen','romantic novel starring Elizabeth Bennet','7656789432908',675, '07-aug-1813','09-aug-1997',15);
+	
+	INSERT INTO Books
+	VALUES (111,'The good sister','Sally Hepworth','story about lies which binds sisters','9056789432901',509, '07-oct-2014','05-aug-2019',17);
+	
+	INSERT INTO Books
+	VALUES (112,'book','Chris Cleave','story about nigerian seeker','3456789432908',500, '07-aug-2008','30-aug-2017',10);
+	
 	 CREATE TABLE BOOKORDER (
 	    order_Id number(19) CONSTRAINTS BOOKORDER_order_Id_pk PRIMARY KEY,
 	    order_Date  date     CONSTRAINTS BOOKORDER_order_Date_nn NOT NULL,
@@ -70,7 +136,37 @@
 		 
 		 INSERT INTO BOOKORDER 
 		 VALUES(201,'21-jan-2021',9000,'delivered','online','Arpit Jain',9313666807,1);
+		 INSERT INTO BOOKORDER 
+		 VALUES(200,'20-jan-2021',2500,'pending','online','kashif',9712558799,2);
 		 
+		 INSERT INTO BOOKORDER 
+		 VALUES(201,'21-jan-2021',9000,'delivered','online','Arpit Jain',9313666807,1);
+		 
+		 INSERT INTO BOOKORDER 
+		 VALUES(202,'22-jan-2021',4567,'dispatched','credit card','Punyakirti Rani',9549061798,4);
+		 
+		 INSERT INTO BOOKORDER 
+		 VALUES(203,'23-jan-2021',9005,'out for delivery','cod','Abhijeet Singh',9546461798,3);
+		 
+		 INSERT INTO BOOKORDER 
+		 VALUES(204,'24-jan-2021',9006,'dispatched','upi','Akshit Goel','8846461798',5);
+		 
+		 INSERT INTO BOOKORDER 
+		 VALUES(205,'25-jan-2021',9008,'delivered','cod','Yash Kushwaha','9876461798',7);
+		 
+		 INSERT INTO BOOKORDER 
+		 VALUES(206,'26-jan-2021',9070,'dispatched','cod','Pulkit Yadav','9503461798',6);
+		 
+		 INSERT INTO BOOKORDER 
+		 VALUES(207,'27-jan-2021',9098,'pending','debit card','Yachna Singh','8847561798',8);
+		 
+		 INSERT INTO BOOKORDER 
+		 VALUES(208,'29-jan-2021',9095,'delivered','online','Shubham Kumar','9546400987',9);
+		 
+		 INSERT INTO BOOKORDER 
+		 VALUES(209,'30-jan-2021',9078,'pending','online','Kartik Mishra','8796461798',10);
+		 
+	
 		 CREATE TABLE ORDERDETAILS(
 		 order_detailid number(19) CONSTRAINTS orderdetails_order_detailid_pk PRIMARY KEY,
 		 quantity number(19) CONSTRAINTS orderdetails_quantity_nn NOT NULL,
@@ -84,6 +180,36 @@
 		INSERT INTO Orderdetails 
 		VALUES(20002,15,101,201);
 		
+		INSERT INTO Orderdetails 
+		VALUES(20003,25,108,200);
+		
+		INSERT INTO Orderdetails 
+		VALUES(20004,15,101,201);
+		
+		INSERT INTO Orderdetails 
+		VALUES(20007,5,102,202);
+		
+		INSERT INTO Orderdetails 
+		VALUES(20008,8,106,203);
+		
+		INSERT INTO Orderdetails 
+		VALUES(20009,5,107,204);
+		
+		INSERT INTO Orderdetails 
+		VALUES(20010,7,108,205);
+		
+		INSERT INTO Orderdetails 
+		VALUES(20011,6,109,206);
+		
+		INSERT INTO Orderdetails 
+		VALUES(20012,11,110,207);
+		
+		INSERT INTO Orderdetails 
+		VALUES(20013,9,111,208);
+		
+		INSERT INTO Orderdetails 
+		VALUES(20014,10,112,209);
+		
 		
 		 
 		 
@@ -92,9 +218,8 @@
 		user_Id number(19) CONSTRAINTS user_user_id_pk PRIMARY KEY,
 		email varchar2(30) CONSTRAINTS user_email_un_nn UNIQUE NOT NULL,
 		password  varchar2(20) CONSTRAINTS user_password_un_nn UNIQUE NOT NULL,
-		role varchar2(15) CONSTRAINTS user_role_un_nn UNIQUE NOT NULL);
-		
-		 INSERT INTO USERS (user_Id,email,password,role)
+		role varchar2(15) CONSTRAINTS user_role_nn  NOT NULL);
+		INSERT INTO USERS (user_Id,email,password,role)
 		 VALUES(1000,'abhijeet@gmail.com','abhijeet123','Manager');
 		 
 		INSERT INTO USERS (user_Id,email,password,role)
@@ -102,6 +227,38 @@
 		 
 		 INSERT INTO USERS (user_Id,email,password,role)
 		 VALUES(1002,'kashif@gmail.com','kashif123','Service');
+		 
+		  
+		 INSERT INTO USERS (user_Id,email,password,role)
+		 VALUES(1003,'punya@gmail.com','punya123','Service');
+		 
+		  
+		 INSERT INTO USERS (user_Id,email,password,role)
+		 VALUES(1004,'akshitg@gmail.com','aksg123','Manager');
+		 
+		  
+		 INSERT INTO USERS (user_Id,email,password,role)
+		 VALUES(1005,'pulkityadav@gmail.com','pulyadv673','Service');
+		 
+		  
+		 INSERT INTO USERS (user_Id,email,password,role)
+		 VALUES(1006,'yash546@gmail.com','sks00093','Sub-Manager');
+		 
+		  
+		 INSERT INTO USERS (user_Id,email,password,role)
+		 VALUES(1007,'yachnasingh5@gmail.com','ycsing123','Service');
+		 
+		  
+		 INSERT INTO USERS (user_Id,email,password,role)
+		 VALUES(1008,'shubhamk@gmail.com','sshub093','Manager');
+		 
+		  
+		 INSERT INTO USERS (user_Id,email,password,role)
+		 VALUES(1009,'kartikmishra@gmail.com','karmis87','Sub-Manager');
+		 
+		  
+		 INSERT INTO USERS (user_Id,email,password,role)
+		 VALUES(1010,'shalini07@gmail.com','shah0101','Manager');
 		
 	 CREATE TABLE REVIEW (
 		review_Id number(19) CONSTRAINTS review_review_Id_pk PRIMARY KEY, 
@@ -114,11 +271,38 @@
 		);
 		
 		 INSERT INTO Review
-		 VALUES(21,'One piece','best manga ever','5star','20-jan-2021',108,1);
+		 VALUES(21,'One piece','best manga book ever','5star','20-jan-2021',108,1);
 		 
 		  INSERT INTO Review
 		 VALUES(22,'One Piece ','changed my life ','5star','21-feb-2021',108,3);
 		 
 		  INSERT INTO Review
-		 VALUES(32,'worst book ever','refund my money back','1star','13-mar-2021',101,2);
+		 VALUES(23,'worst book ever','refund my money back','1star','13-mar-2021',101,2);
 		 
+		  
+		  INSERT INTO Review
+		 VALUES(24,'Harry Potter','great perspective','5star','22-jan-2021',102,2);
+		 
+		  
+		  INSERT INTO Review
+		 VALUES(25,'Sapiens','Take my money','5star','10-feb-2021',106,9);
+		 
+		  
+		  INSERT INTO Review
+		 VALUES(26,'Steve Jobs','Very complex language','2star','23-mar-2021',107,8);
+		 
+		  
+		  INSERT INTO Review
+		 VALUES(27,'Dracula','Best teen comedy ever written','5star','14-feb-2021',109,5);
+		 
+		  
+		  INSERT INTO Review
+		 VALUES(28,'Sapiens','brief history about humans','4star','08-mar-2021',106,7);
+		 
+		  
+		  INSERT INTO Review
+		 VALUES(29,'the good sister','if you have free money give to charity','1star','13-jan-2021',111,9);
+		 
+		  
+		  INSERT INTO Review
+		 VALUES(30,'Gulliver Travel','most emotional book ever','5star','11-jan-2021',101,1);

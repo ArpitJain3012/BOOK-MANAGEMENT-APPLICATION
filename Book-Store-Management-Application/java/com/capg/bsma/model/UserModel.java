@@ -7,6 +7,9 @@ import javax.validation.constraints.Pattern;
 
 public class UserModel {
 
+	/*
+	 * validations for all private members
+	 */
 	@NotNull(message = "user id cannot be null")
 	@NotBlank(message = "user id cannot be blank")
 	private Long userId;
@@ -23,10 +26,12 @@ public class UserModel {
 	@NotEmpty(message = "role cannot be blank")
 	private String role;
 
+	// default constructor
 	public UserModel() {
 		// Intentionally left blank
 	}
 
+	// parametrized constructor
 	public UserModel(
 			@NotNull(message = "user id cannot be null") @NotBlank(message = "user id cannot be blank") Long userId,
 			@Pattern(regexp = "\"^[a-zA-Z0-9_!#$%&'*+/=?{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Invalid email id") @NotNull(message = "Email cannot be null") String email,
@@ -74,6 +79,9 @@ public class UserModel {
 		this.role = role;
 	}
 
+	/*
+	 * generating hashcode
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -85,6 +93,9 @@ public class UserModel {
 		return result;
 	}
 
+	/*
+	 * generating equals method
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -116,6 +127,9 @@ public class UserModel {
 			return false;
 		return true;
 	}
+	/*
+	 * generating to string
+	 */
 
 	@Override
 	public String toString() {

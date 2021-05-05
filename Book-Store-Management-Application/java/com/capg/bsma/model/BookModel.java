@@ -2,11 +2,6 @@ package com.capg.bsma.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -14,10 +9,11 @@ import javax.validation.constraints.PastOrPresent;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import com.capg.bsma.entity.OrderDetailEntity;
-
 public class BookModel {
 
+	/*
+	 * validations for all private members
+	 */
 	@NotNull(message = "book id cannot be null")
 	@NotBlank(message = "book id cannot be blank")
 	private Long bookId;
@@ -49,6 +45,7 @@ public class BookModel {
 	@PastOrPresent(message = "lastUpdated on date cannot be a future date")
 	private LocalDate lastUpDate;
 
+//default constructor 
 	public BookModel() {
 		// no implementation
 	}
@@ -153,6 +150,9 @@ public class BookModel {
 		this.categoryId = categoryId;
 	}
 
+	/*
+	 * generating hashcode
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -168,7 +168,9 @@ public class BookModel {
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
-
+	/*
+	 * generating equals method
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -225,7 +227,9 @@ public class BookModel {
 			return false;
 		return true;
 	}
-
+	/*
+	 * generating to string 
+	 */
 	@Override
 	public String toString() {
 		return String.format(

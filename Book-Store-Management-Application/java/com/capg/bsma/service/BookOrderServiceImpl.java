@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capg.bsma.entity.BookOrderEntity;
-import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.BookOrderModel;
 import com.capg.bsma.repo.IBookOrderRepository;
-import com.capg.bsma.repo.ICustomerRepository;
 
+/*
+ * implementing service method for book order 
+ */
 @Service
 public class BookOrderServiceImpl implements IBookOrderService {
 	@Autowired
@@ -24,11 +25,13 @@ public class BookOrderServiceImpl implements IBookOrderService {
 	@Autowired
 	private EMParserBookOrder parser;
 
+	// default constructor
 	public BookOrderServiceImpl() {
 		this.parser = new EMParserBookOrder();
 
 	}
 
+	// parameter constructor
 	public BookOrderServiceImpl(IBookOrderRepository ibr) {
 		super();
 		this.ibr = ibr;
@@ -43,7 +46,7 @@ public class BookOrderServiceImpl implements IBookOrderService {
 	@Override
 	public BookOrderModel createBook(BookOrderModel b) throws BMSException {
 		if (b != null) {
-			if (ibr.existsById(b.getOrderId())) {
+			if ((b.getOrderId() == null)) {
 				throw new BMSException("Order with this id already exists");
 			} else {
 				b = parser.parse(ibr.save(parser.parse(b)));

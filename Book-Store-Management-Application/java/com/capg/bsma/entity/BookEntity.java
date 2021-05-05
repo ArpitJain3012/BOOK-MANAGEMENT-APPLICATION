@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,34 +13,43 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.capg.bsma.model.OrderDetailsModel;
-
+/*
+ * Linking books Database with entity class BookEntity
+ */
 @Entity
 @Table(name = "books")
 public class BookEntity {
 
+	// Primary key in database
 	@Id
 	@Column(name = "book_Id")
 	private Long bookId;
 
+	// title of book
 	@Column(name = "title")
 	private String title;
 
+	// Writer of the book
 	@Column(name = "author")
 	private String author;
 
+	// Description of books
 	@Column(name = "description")
 	private String description;
 
+	// international standard book number
 	@Column(name = "isbn")
 	private String isbn;
 
+	// price of books
 	@Column(name = "price")
 	private BigDecimal price;
 
+	// published date of book
 	@Column(name = "pub_Date")
 	private LocalDate pubDate;
 
+	// last updated date
 	@Column(name = "last_Up_Date")
 	private LocalDate lastUpDate;
 
@@ -55,18 +63,20 @@ public class BookEntity {
 	/*
 	 * using one to many association for mapping with review entity
 	 */
-	@OneToMany(mappedBy = "book1", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "book1", cascade = CascadeType.ALL)
 	private Set<ReviewEntity> rev;
 	/*
 	 * using one to many association for mapping with rorder details entity
 	 */
-	@OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
 	private Set<OrderDetailEntity> orderdetail1;
 
+	// default constructor
 	public BookEntity() {
 		// no implementation
 	}
 
+	// Parametrized constructor
 	public BookEntity(Long bookId, String title, String author, String description, String isbn, BigDecimal price,
 			LocalDate pubDate, LocalDate lastUpDate, CategoryEntity category) {
 		super();
@@ -81,6 +91,9 @@ public class BookEntity {
 		this.category = category;
 	}
 
+	/*
+	 * getters and setters
+	 */
 	public Long getBookId() {
 		return bookId;
 	}
@@ -169,6 +182,9 @@ public class BookEntity {
 		this.orderdetail1 = orderdetail1;
 	}
 
+	/*
+	 * hashcode generating
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -185,6 +201,9 @@ public class BookEntity {
 		return result;
 	}
 
+	/*
+	 * equals method generating
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -242,6 +261,9 @@ public class BookEntity {
 		return true;
 	}
 
+	/*
+	 * to string method generating
+	 */
 	@Override
 	public String toString() {
 		return String.format(

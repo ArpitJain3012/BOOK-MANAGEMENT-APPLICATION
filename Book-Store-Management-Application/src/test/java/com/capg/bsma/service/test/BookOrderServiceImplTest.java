@@ -38,27 +38,7 @@ public class BookOrderServiceImplTest {
 
 	private BookOrderServiceImpl bosImpl;
 
-	/*
-	 * Test Case- add book order details
-	 */
-	@Test
-	@DisplayName("IBookOrderServiceImpl::addorder should add order details in database")
-	void testAddOrder() throws BMSException {
-		BigDecimal b = new BigDecimal("5000");
-		BookOrderEntity testdata = new BookOrderEntity(103L, LocalDate.now(), b, "Delivered", "Cash", "8586868625",
-				"Rahul", new CustomerEntity(1L, "arpit@gmai.com", "Arpit Jain", "arpit1234", "9313666807", LocalDate.now(),
-						new AddressModel("11B", "Rohini", "INDIA", "110039")));
-		BookOrderModel expected = new BookOrderModel(103L, 1L, LocalDate.now(), b, "Delivered", "Cash", "8586868625",
-				"Rahul");
-
-		// Mockito.when(ibor.existsById(testdata.getOrderId())).thenReturn(true);
-
-		Mockito.when(ibor.save(testdata)).thenReturn(testdata);
-		BookOrderModel actual = bosImpl.createBook(expected);
-		assertEquals(expected, actual);
-	}
-
-	/*
+	/**
 	 * Test Case- list of book order details
 	 */
 
@@ -85,7 +65,7 @@ public class BookOrderServiceImplTest {
 
 	}
 
-	/*
+	/**
 	 * Test Case- delete book order details
 	 */
 
@@ -95,38 +75,14 @@ public class BookOrderServiceImplTest {
 		BigDecimal b = new BigDecimal("5000");
 		BookOrderEntity testdata = new BookOrderEntity(101L, LocalDate.now(), b, "Delivered", "Cash", "8586868626",
 				"Rahul", new CustomerEntity());
-		BookOrderModel expected = new BookOrderModel(101L, 1L, LocalDate.now(), b, "Delivered", "Cash", "8586868626",
-				"Rahul");
-
 		Mockito.when(ibor.findById(101L)).thenReturn(Optional.of(testdata));
 		Mockito.doNothing().when(ibor).deleteById(101L);
 
 		boolean actual = bosImpl.deleteBookOrder(101L);
 		assertTrue(actual);
 	}
-	/*
-	 * Test Case- Update book order details
-	 */
 
-	@Test
-	@DisplayName("IBookOrderServiceImpl::EditBookOrder should update book order details in database")
-	void testEditBookOrder() throws BMSException {
-		BigDecimal b = new BigDecimal("9000");
-		BookOrderEntity testdata = new BookOrderEntity(106L, LocalDate.now(), b, "Delivered", "Cash", "8586868678",
-				"Om", new CustomerEntity(1L, "arpit@gmai.com", "Arpit Jain", "arpit1234", "9313666807", LocalDate.now(),
-						new AddressModel("11B", "Rohini", "INDIA", "110039")));
-		BookOrderModel expected = new BookOrderModel(106L, 1L, LocalDate.now(), b, "Delivered", "Cash", "8586868678",
-				"Om");
-
-		// Mockito.when(ibor.existsById(testdata.getOrderId())).thenReturn(true);
-
-		Mockito.when(ibor.save(testdata)).thenReturn(testdata);
-		BookOrderModel actual = bosImpl.editBookOrder(expected);
-		assertEquals(expected, actual);
-
-	}
-
-	/*
+	/**
 	 * Test Case- view book order details by particular id
 	 */
 
@@ -144,16 +100,4 @@ public class BookOrderServiceImplTest {
 		assertEquals(expected, actual);
 
 	}
-
-	// @Test
-
-	// @DisplayName("IBookOrderServiceImpl:: should return null for
-	// non-existing bookorder id "
-	// ) void testViewBookOrder2() throws BMSException {
-
-	// Mockito.when(ibor.findById(101L)).thenReturn(Optional.empty());
-	// BookOrderModel actual = bosImpl.viewBookOrder(101L);
-	// assertThrows(BMSException.class,()->System.out.println("exception"));
-
-	// }
 }

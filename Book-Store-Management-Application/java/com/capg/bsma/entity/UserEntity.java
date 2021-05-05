@@ -1,33 +1,39 @@
 package com.capg.bsma.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/*
+ * linking users database with UserEntity
+ */
 @Entity
 @Table(name = "users")
-public class UserEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class UserEntity {
+
+	// primary key
 	@Id
 	@Column(name = "user_Id")
 	private Long userId;
-
+	// email id of customer
 	@Column(name = "email", length = 30)
 	private String email;
 
+	// password of customer
 	@Column(name = "password", length = 20)
 	private String password;
 
+	// role of customer
 	@Column(name = "role", length = 10)
 	private String role;
 
+	// default constructor
 	public UserEntity() {
 		/* Intentionally left blank */
 	}
 
+	// parameter constructor
 	public UserEntity(Long userId, String email, String password, String role) {
 		super();
 		this.userId = userId;
@@ -35,6 +41,9 @@ public class UserEntity implements Serializable {
 		this.password = password;
 		this.role = role;
 	}
+	/*
+	 * setters and getters generating
+	 */
 
 	public Long getUserId() {
 		return userId;
@@ -68,6 +77,9 @@ public class UserEntity implements Serializable {
 		this.role = role;
 	}
 
+	/*
+	 * hashcode generating
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,6 +91,9 @@ public class UserEntity implements Serializable {
 		return result;
 	}
 
+	/*
+	 * equals method generating
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -110,6 +125,9 @@ public class UserEntity implements Serializable {
 			return false;
 		return true;
 	}
+	/*
+	 * to string generating
+	 */
 
 	@Override
 	public String toString() {

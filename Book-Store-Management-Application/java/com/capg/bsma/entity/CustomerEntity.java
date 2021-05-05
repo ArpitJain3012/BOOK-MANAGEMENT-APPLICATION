@@ -1,7 +1,5 @@
 package com.capg.bsma.entity;
 
-import java.io.Serializable;
-
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -13,29 +11,35 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 import com.capg.bsma.model.AddressModel;
-import com.capg.bsma.model.CustomerModel;
-
+/*
+ * linking customer database with CustomerEntity
+ */
 @Entity
 @Table(name = "customer")
 public class CustomerEntity {
+	//primary key
 	@Id
 	@Column(name = "customer_Id")
 	private Long customerId;
 
+	// email id of customer
 	@Column(name = "email", length = 30)
 	private String email;
 
+	// full name of customer
 	@Column(name = "full_name", length = 20)
 	private String fullName;
 
+	//passowrd for email id
 	@Column(name = "password", length = 20)
 	private String password;
 
+	//contact number
 	@Column(name = "mobile_Number", length = 10)
 	private String mobileNumber;
 
+	//registration date on application
 	@Column(name = "register_On")
 	private LocalDate registerOn;
 	/*
@@ -47,20 +51,22 @@ public class CustomerEntity {
 	 * using one to many association for mapping with BookOrders entity
 	 */
 
-	@OneToMany(mappedBy = "cust", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "cust", cascade = CascadeType.ALL)
 	private Set<BookOrderEntity> bo;
 
 	/*
 	 * using one to many association for mapping with review entity
-	 
-*/
-	@OneToMany(mappedBy = "cust1", cascade = CascadeType.PERSIST)
+	 * 
+	 */
+	@OneToMany(mappedBy = "cust1", cascade = CascadeType.ALL)
 	private Set<ReviewEntity> rev;
-	
+
+	//default constructor
 	public CustomerEntity() {
 		// no implementation
 	}
 
+	//Parameter Constructor
 	public CustomerEntity(Long customerId, String email, String fullName, String password, String mobileNumber,
 			LocalDate registerOn, AddressModel am) {
 		super();
@@ -73,6 +79,9 @@ public class CustomerEntity {
 		this.am = am;
 	}
 
+	/*
+	 * getters and setters generating
+	 */
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
@@ -144,7 +153,9 @@ public class CustomerEntity {
 	public void setRev(Set<ReviewEntity> rev) {
 		this.rev = rev;
 	}
-
+	/*
+	 * hashcode generating
+	 */
 
 	@Override
 	public int hashCode() {
@@ -160,6 +171,9 @@ public class CustomerEntity {
 		return result;
 	}
 
+	/*
+	 * equals method generating
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -207,6 +221,9 @@ public class CustomerEntity {
 		return true;
 	}
 
+	/*
+	 * . to string generating
+	 */
 	@Override
 	public String toString() {
 		return String.format(

@@ -9,7 +9,9 @@ import com.capg.bsma.entity.UserEntity;
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.UserModel;
 import com.capg.bsma.repo.ILoginRepository;
-import com.capg.bsma.repo.IReviewRepository;
+/*
+ * implementing service method for customer
+ */
 
 @Service
 public class LoginServiceImpl implements ILoginService {
@@ -20,10 +22,12 @@ public class LoginServiceImpl implements ILoginService {
 	@Autowired
 	private EMParserUser parser;
 
+//default constructor
 	public LoginServiceImpl() {
 		this.parser = new EMParserUser();
 	}
 
+//parametr constructor
 	public LoginServiceImpl(ILoginRepository ilr) {
 		super();
 		this.ilr = ilr;
@@ -85,7 +89,7 @@ public class LoginServiceImpl implements ILoginService {
 	 */
 	@Override
 	public UserModel getById(Long id) throws BMSException {
-		if (ilr.existsById(id))
+		if (!ilr.existsById(id))
 			throw new BMSException("No user found for the given id");
 		return parser.parse(ilr.findById(id).get());
 	}
@@ -95,7 +99,7 @@ public class LoginServiceImpl implements ILoginService {
 	 */
 	@Override
 	public UserModel getByPassword(String password) throws BMSException {
-		if (ilr.existsByPassword(password))
+		if (!ilr.existsByPassword(password))
 			throw new BMSException("No user found for the given password");
 		return parser.parse(ilr.findByPassword(password));
 	}

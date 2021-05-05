@@ -1,7 +1,5 @@
 package com.capg.bsma.model;
 
-import java.io.Serializable;
-
 import java.time.LocalDate;
 
 import javax.validation.Valid;
@@ -10,14 +8,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+/*
+ * customer model for validation of customer entity private members
+ */
 public class CustomerModel {
 
+	/*
+	 * validations for all private members
+	 */
 	@NotNull(message = "Customer Id cannot be null")
-	@NotBlank(message = "Customer Id cannot be blank")
 	private Long customerId;
 
 	@Pattern(regexp = "\"^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Invalid Email id")
@@ -43,12 +45,13 @@ public class CustomerModel {
 	@Valid
 	private AddressModel am;
 
+	// default constructor
 	public CustomerModel() {
 		// no implementation
 	}
 
-	public CustomerModel(
-			@NotNull(message = "Customer Id cannot be null") @NotBlank(message = "Customer Id cannot be blank") Long customerId,
+	// parameter constructor
+	public CustomerModel(@NotNull(message = "Customer Id cannot be null") Long customerId,
 			@Pattern(regexp = "\"^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Invalid Email id") @NotNull(message = "Email cannot be omitted") String email,
 			@NotEmpty(message = "full name cannot be empty") @NotNull(message = "full name cannot be null") String fullName,
 			@Pattern(regexp = "[a-zA-Z0-9 @_]{8,20}", message = "Inavlid password ") @NotNull(message = "Password cannot be null") String password,
@@ -124,6 +127,9 @@ public class CustomerModel {
 		this.am = am;
 	}
 
+	/*
+	 * hashcode generating
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -138,6 +144,9 @@ public class CustomerModel {
 		return result;
 	}
 
+	/*
+	 * equals method generating
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -185,6 +194,9 @@ public class CustomerModel {
 		return true;
 	}
 
+	/*
+	 * to string generating
+	 */
 	@Override
 	public String toString() {
 		return String.format(

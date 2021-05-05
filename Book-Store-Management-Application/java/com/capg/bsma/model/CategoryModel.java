@@ -5,6 +5,9 @@ import javax.validation.constraints.NotNull;
 
 public class CategoryModel {
 
+	/*
+	 * validations for all private members
+	 */
 	@NotNull(message = "category id cannot be null")
 	@NotBlank(message = "book id cannot be blank")
 	private Long categoryId;
@@ -12,10 +15,12 @@ public class CategoryModel {
 	@NotNull(message = "category name cannot be null")
 	private String categoryName;
 
+	// default constructor
 	public CategoryModel() {
 		// no implementation
 	}
 
+	// parametrized constructor
 	public CategoryModel(
 			@NotNull(message = "category id cannot be null") @NotBlank(message = "book id cannot be blank") Long categoryId,
 			@NotNull(message = "category name cannot be null") String categoryName) {
@@ -43,6 +48,9 @@ public class CategoryModel {
 		this.categoryName = categoryName;
 	}
 
+	/*
+	 * generating hashcode
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -52,6 +60,9 @@ public class CategoryModel {
 		return result;
 	}
 
+	/*
+	 * generating equals method
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -74,6 +85,9 @@ public class CategoryModel {
 		return true;
 	}
 
+	/*
+	 * generating to string
+	 */
 	@Override
 	public String toString() {
 		return String.format("categoryId=%s ,categoryName=%s", categoryId, categoryName);

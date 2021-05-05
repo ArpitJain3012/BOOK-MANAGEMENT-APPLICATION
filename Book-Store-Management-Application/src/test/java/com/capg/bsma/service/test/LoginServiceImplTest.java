@@ -2,6 +2,7 @@ package com.capg.bsma.service.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
@@ -14,12 +15,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Service;
-
-import com.capg.bsma.entity.CategoryEntity;
 import com.capg.bsma.entity.UserEntity;
 import com.capg.bsma.exception.BMSException;
-import com.capg.bsma.model.CategoryModel;
 import com.capg.bsma.model.UserModel;
 import com.capg.bsma.repo.ILoginRepository;
 import com.capg.bsma.service.LoginServiceImpl;
@@ -45,7 +42,9 @@ public class LoginServiceImplTest {
 	void testAddUser() throws BMSException {
 
 		UserEntity testdata = new UserEntity(101L, "arpit@gmail.com", "arpit1234", "President");
-		UserModel expected = new UserModel(101L, "arpit@gmai.com", "arpit1234", "President");
+		UserModel expected = new UserModel(101L, "arpit@gmail.com", "arpit1234", "President");
+
+		Mockito.when(userrepo.existsById(testdata.getUserId())).thenReturn(false);
 
 		/* when userrepo.save() is called with test data */
 		Mockito.when(userrepo.save(testdata)).thenReturn(testdata);
@@ -60,8 +59,7 @@ public class LoginServiceImplTest {
 	@DisplayName("LoginServiceImpl::removeuser should return list of existing packages as ss")
 	void testRemoveUser() throws BMSException {
 		UserEntity testdata = new UserEntity(101L, "arpit@gmail.com", "arpitjain1234", "President");
-		UserModel expected = new UserModel(101L, "arpit@gmail.com", "arpitjain1234", "President");
-
+		
 		Mockito.when(userrepo.findById(101L)).thenReturn(Optional.of(testdata));
 		Mockito.doNothing().when(userrepo).deleteById(101L);
 
@@ -78,11 +76,14 @@ public class LoginServiceImplTest {
 		UserEntity testdata = new UserEntity(101L, "arpit@gmail.com", "arpitjain1235", "Vice-President");
 		UserModel expected = new UserModel(101L, "arpit@gmail.com", "arpitjain1235", "Vice-President");
 
+		Mockito.when(userrepo.existsById(testdata.getUserId())).thenReturn(true);
+
 		Mockito.when(userrepo.save(testdata)).thenReturn(testdata);
 		UserModel actual = lsImpl.updateUser(expected);
 		assertEquals(expected, actual);
 
 	}
+
 	/**
 	 * Test Case 4 -view user by id
 	 */
@@ -97,6 +98,7 @@ public class LoginServiceImplTest {
 		assertEquals(expected, actual);
 
 	}
+
 	/**
 	 * Test Case 4 -view user by id
 	 */

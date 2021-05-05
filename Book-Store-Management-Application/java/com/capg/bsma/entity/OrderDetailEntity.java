@@ -6,34 +6,40 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+/*
+ * linking ORDERDETAILS database with OrderDetailEntity
+ */
 @Entity
 @Table(name = "ORDERDETAILS")
 public class OrderDetailEntity {
 
+	//primary key
 	@Id
 	@Column(name = "order_detailid")
 	private Long order_detail_Id;
-	
-	@Column(name="quantity")
+
+	// quantity of order
+	@Column(name = "quantity")
 	private Long quantity;
 	/*
-	 * using many to one  association for mapping with book order entity
+	 * using many to one association for mapping with book order entity
 	 */
 	@ManyToOne
 	@JoinColumn(name = "order_Id")
 	private BookOrderEntity bookorders;
 	/*
-	 * using many to one  association for mapping with book  entity
+	 * using many to one association for mapping with book entity
 	 */
 	@ManyToOne
 	@JoinColumn(name = "book_Id")
 	private BookEntity book;
-	
+
+	//default constructor
 	public OrderDetailEntity() {
-		//no implementation
+		// no implementation
 	}
 
+	//Parameter Constructor
 	public OrderDetailEntity(Long order_detail_Id, Long quantity, BookOrderEntity bookorders, BookEntity book) {
 		super();
 		this.order_detail_Id = order_detail_Id;
@@ -41,6 +47,9 @@ public class OrderDetailEntity {
 		this.bookorders = bookorders;
 		this.book = book;
 	}
+	/*
+	 * getters and setters generating
+	 */
 
 	public Long getOrder_detail_Id() {
 		return order_detail_Id;
@@ -74,6 +83,9 @@ public class OrderDetailEntity {
 		this.book = book;
 	}
 
+	/*
+	 * hashcode generating
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -85,6 +97,9 @@ public class OrderDetailEntity {
 		return result;
 	}
 
+	/*
+	 * equals generating
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -117,6 +132,9 @@ public class OrderDetailEntity {
 		return true;
 	}
 
+	/*
+	 * to string generating
+	 */
 	@Override
 	public String toString() {
 		return "OrderDetailEntity [order_detail_Id=" + order_detail_Id + ", quantity=" + quantity + ", bookorders="

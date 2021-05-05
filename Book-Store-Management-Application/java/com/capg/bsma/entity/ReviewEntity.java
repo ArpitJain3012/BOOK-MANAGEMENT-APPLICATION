@@ -1,6 +1,5 @@
 package com.capg.bsma.entity;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -10,23 +9,31 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/*
+ * linking review database with ReviewEntity
+ */
 @Entity
 @Table(name = "review")
 
 public class ReviewEntity {
+	// primary key
 	@Id
 	@Column(name = "review_Id")
 	private Long reviewId;
 
+	// headline of review
 	@Column(name = "headline", length = 30)
 	private String headline;
 
+	// comments given by customer
 	@Column(name = "comments", length = 20)
 	private String comment;
 
+	// rating given by customer
 	@Column(name = "rating", length = 20)
 	private String rating;
 
+	// review given on date
 	@Column(name = "review_On")
 	private LocalDate reviewOn;
 
@@ -46,11 +53,12 @@ public class ReviewEntity {
 	@JoinColumn(name = "book_Id")
 	private BookEntity book1;
 
+	// default constructor
 	public ReviewEntity() {
 		// no implementation
 	}
 
-
+	// parameter constructor
 	public ReviewEntity(Long reviewId, String headline, String comment, String rating, LocalDate reviewOn,
 			CustomerEntity cust1, BookEntity book1) {
 		super();
@@ -63,7 +71,9 @@ public class ReviewEntity {
 		this.book1 = book1;
 	}
 
-
+	/*
+	 * getters and setters generating
+	 */
 	public Long getReviewId() {
 		return reviewId;
 	}
@@ -120,6 +130,9 @@ public class ReviewEntity {
 		this.book1 = book1;
 	}
 
+	/*
+	 * equals generating
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -134,7 +147,9 @@ public class ReviewEntity {
 		return result;
 	}
 
-
+	/*
+	 * equals generating
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -182,11 +197,13 @@ public class ReviewEntity {
 		return true;
 	}
 
-
+	/*
+	 * to string generating
+	 */
 	@Override
 	public String toString() {
-		return String.format("reviewId=%s, headline=%s, comment=%s, rating=%s,reviewOn=%s,customer=%s,book=%s ", reviewId, headline,
-				comment, rating, reviewOn,cust1,book1);
+		return String.format("reviewId=%s, headline=%s, comment=%s, rating=%s,reviewOn=%s,customer=%s,book=%s ",
+				reviewId, headline, comment, rating, reviewOn, cust1, book1);
 	}
 
 }

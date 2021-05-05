@@ -1,6 +1,5 @@
 package com.capg.bsma.service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,12 +12,14 @@ import com.capg.bsma.entity.BookEntity;
 import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.entity.ReviewEntity;
 import com.capg.bsma.exception.BMSException;
-import com.capg.bsma.model.BookModel;
-import com.capg.bsma.model.CustomerModel;
 import com.capg.bsma.model.ReviewModel;
 import com.capg.bsma.repo.IBookRepository;
 import com.capg.bsma.repo.ICustomerRepository;
 import com.capg.bsma.repo.IReviewRepository;
+
+/*
+ * implementing service method for customer
+ */
 
 @Service
 public class ReviewServiceImpl implements IReviewService {
@@ -35,13 +36,17 @@ public class ReviewServiceImpl implements IReviewService {
 	@Autowired
 	private EMParserReview parser;
 
+	// default constructor
 	public ReviewServiceImpl() {
 		this.parser = new EMParserReview();
 	}
 
-	public ReviewServiceImpl(IReviewRepository irr) {
+	// parameter constructor
+	public ReviewServiceImpl(IReviewRepository irr, ICustomerRepository icr, IBookRepository ibr) {
 		super();
 		this.irr = irr;
+		this.icr = icr;
+		this.ibr = ibr;
 		this.parser = new EMParserReview();
 	}
 

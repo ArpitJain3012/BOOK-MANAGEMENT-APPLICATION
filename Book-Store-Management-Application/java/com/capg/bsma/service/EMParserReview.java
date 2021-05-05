@@ -1,14 +1,17 @@
 package com.capg.bsma.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.capg.bsma.entity.ReviewEntity;
 import com.capg.bsma.model.ReviewModel;
 import com.capg.bsma.repo.IBookRepository;
 import com.capg.bsma.repo.ICustomerRepository;
-import com.capg.bsma.repo.IReviewRepository;
 
+/*
+ * implementing parser method to link entity with model
+ */
 @Service
 public class EMParserReview {
 
@@ -18,9 +21,21 @@ public class EMParserReview {
 	@Autowired
 	private IBookRepository ibr;
 
-	@Autowired
-	private IReviewRepository irr;
+//default constructor
+	public EMParserReview() {
+		// no implementation
+	}
 
+//parameter constructor
+	public EMParserReview(ICustomerRepository icr, IBookRepository ibr) {
+		super();
+		this.icr = icr;
+		this.ibr = ibr;
+	}
+
+	/*
+	 * linking entity with model
+	 */
 	public ReviewEntity parse(ReviewModel source) {
 		return source == null ? null
 				: new ReviewEntity(source.getReviewId(), source.getHeadline(), source.getComment(), source.getRating(),
@@ -28,6 +43,9 @@ public class EMParserReview {
 						ibr.findById(source.getBookid()).orElse(null));
 	}
 
+	/*
+	 * linking model with entity
+	 */
 	public ReviewModel parse(ReviewEntity source) {
 		return source == null ? null
 				: new ReviewModel(source.getReviewId(), source.getcust1().getCustomerId(),

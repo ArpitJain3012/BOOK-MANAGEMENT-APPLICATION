@@ -1,29 +1,31 @@
 package com.capg.bsma.service;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.model.CustomerModel;
-import com.capg.bsma.repo.ICustomerRepository;
 
+/*
+ * implementing parser method to link entity with model
+ */
 @Service
 public class EMParserCustomer {
 
-	@Autowired
-	private ICustomerRepository icr;
-
+	/*
+	 * linking entity with model
+	 */
 	public CustomerEntity parse(CustomerModel source) {
 		return source == null ? null
-				: new CustomerEntity(source.getCustomerId(), source.getFullName(), source.getEmail(),
+				: new CustomerEntity(source.getCustomerId(), source.getEmail(), source.getFullName(),
 						source.getPassword(), source.getMobileNumber(), source.getRegisterOn(), source.getAm());
 	}
 
+	/*
+	 * linking model with entity
+	 */
 	public CustomerModel parse(CustomerEntity source) {
 		return source == null ? null
-				: new CustomerModel(source.getCustomerId(), source.getFullName(), source.getEmail(),
+				: new CustomerModel(source.getCustomerId(), source.getEmail(), source.getFullName(),
 						source.getPassword(), source.getMobileNumber(), source.getRegisterOn(), source.getAm());
 	}
 

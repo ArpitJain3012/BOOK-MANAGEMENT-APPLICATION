@@ -3,7 +3,6 @@ package com.capg.bsma.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,24 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.UserModel;
-import com.capg.bsma.repo.ILoginRepository;
 import com.capg.bsma.service.LoginServiceImpl;
 
 @RestController
-@RequestMapping(path = "/users")
+@RequestMapping(path = "/user")
 public class LoginAPI {
 
 	@Autowired
 	private LoginServiceImpl lsimpl;
 
-	@Autowired
-	private ILoginRepository ilr;
-
 	/*
 	 * user id should be alpha numerical and between 1-10
 	 */
 
-	@GetMapping("/{userId:[a-zA-Z0-9]{1,10}}")
+	@GetMapping("/{userId}")
 	public ResponseEntity<UserModel> getById(@PathVariable("userId") Long id) throws BMSException {
 		return ResponseEntity.ok(lsimpl.getById(id));
 	}

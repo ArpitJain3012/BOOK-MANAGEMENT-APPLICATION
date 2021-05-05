@@ -1,43 +1,51 @@
 package com.capg.bsma.entity;
 
-import java.awt.print.Book;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/*
+ * linking category database with CategoryEntity
+ */
 @Entity
 @Table(name = "category")
 public class CategoryEntity {
 
+	// primary key
 	@Id
 	@Column(name = "category_Id")
 	private Long categoryId;
 
+	// book category name
 	@Column(name = "category_Name")
 	private String categoryName;
 
 	/*
 	 * using one to many association for mapping with book entity
 	 */
-	@OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private Set<BookEntity> book;
 
+	// default constructor
 	public CategoryEntity() {
 		// no implementation
 
 	}
 
+	// parametrized constructor
 	public CategoryEntity(Long categoryId, String categoryName) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
 	}
+	/*
+	 * getters and setters
+	 */
 
 	public Long getCategoryId() {
 		return categoryId;
@@ -55,8 +63,6 @@ public class CategoryEntity {
 		this.categoryName = categoryName;
 	}
 
-	
-
 	public Set<BookEntity> getBook() {
 		return book;
 	}
@@ -65,6 +71,9 @@ public class CategoryEntity {
 		this.book = book;
 	}
 
+	/*
+	 * hashcode generating
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -74,6 +83,9 @@ public class CategoryEntity {
 		return result;
 	}
 
+	/*
+	 * equals method generating
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -96,6 +108,9 @@ public class CategoryEntity {
 		return true;
 	}
 
+	/*
+	 * to string generating
+	 */
 	@Override
 	public String toString() {
 		return String.format("categoryId=%s ,categoryName=%s", categoryId, categoryName);

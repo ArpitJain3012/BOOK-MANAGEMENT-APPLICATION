@@ -11,12 +11,14 @@ import org.springframework.stereotype.Service;
 
 import com.capg.bsma.entity.BookEntity;
 import com.capg.bsma.entity.CategoryEntity;
-import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.BookModel;
 import com.capg.bsma.repo.IBookRepository;
 import com.capg.bsma.repo.ICategoryRepository;
 
+/*
+ * implementing service methods for book
+ */
 @Service
 public class BookServiceImpl implements IBookService {
 
@@ -29,15 +31,17 @@ public class BookServiceImpl implements IBookService {
 	@Autowired
 	private ICategoryRepository catrepo;
 
-
+	// default constructor
 	public BookServiceImpl() {
 		this.parser = new EMParserBook();
 	}
-	
-	public BookServiceImpl(IBookRepository bookrepo) {
+
+	// parameter constructor
+	public BookServiceImpl(IBookRepository bookrepo, ICategoryRepository catrepo) {
 		super();
 		this.bookrepo = bookrepo;
 		this.parser = new EMParserBook();
+		this.catrepo = catrepo;
 	}
 
 	@Transactional
@@ -48,7 +52,7 @@ public class BookServiceImpl implements IBookService {
 	public BookModel createBook(BookModel b) throws BMSException {
 		if (b != null) {
 			if (bookrepo.existsById(b.getBookId())) {
-				throw new BMSException("book with this id already exists "+ b.getBookId());
+				throw new BMSException("book with this id already exists " + b.getBookId());
 			}
 			b = parser.parse(bookrepo.save(parser.parse(b)));
 		}
@@ -71,14 +75,14 @@ public class BookServiceImpl implements IBookService {
 	 * deleteBook should return list of existing books
 	 */
 	public boolean deleteBook(Long bookid) throws BMSException {
-		BookEntity cust= bookrepo.findById(bookid).orElse(null);
-		if(cust==null) {
-			throw new BMSException("no books with id # "+bookid+" prsent");
-		}else {
-			 bookrepo.deleteById(bookid);
+		BookEntity cust = bookrepo.findById(bookid).orElse(null);
+		if (cust == null) {
+			throw new BMSException("no books with id # " + bookid + " prsent");
+		} else {
+			bookrepo.deleteById(bookid);
 			return true;
 		}
-		
+
 	}
 
 	@Transactional
@@ -89,7 +93,7 @@ public class BookServiceImpl implements IBookService {
 	public BookModel editBook(BookModel bookmod) throws BMSException {
 
 		if (bookmod != null) {
-			if (!bookrepo.existsById(null)) {
+			if (!bookrepo.existsById(bookmod.getBookId())) {
 				throw new BMSException("No books in the list");
 			}
 
@@ -104,8 +108,8 @@ public class BookServiceImpl implements IBookService {
 	 * viewBook should return list of existing books
 	 */
 	public BookModel viewBook(Long bookid) throws BMSException {
-		BookEntity book= bookrepo.findById(bookid).orElse(null);
-		if (book==null) {
+		BookEntity book = bookrepo.findById(bookid).orElse(null);
+		if (book == null) {
 			throw new BMSException("No book found for given id : " + bookid);
 		}
 		return parser.parse(bookrepo.findById(bookid).get());
@@ -117,10 +121,10 @@ public class BookServiceImpl implements IBookService {
 	 */
 	public List<BookModel> listBooksByCategory(Long catid) throws BMSException {
 
-		CategoryEntity catentity= catrepo.findById(catid).orElse(null);
-		
-		if(catentity==null) {
-			throw new BMSException("No Books by "+catentity.getCategoryName());
+		CategoryEntity catentity = catrepo.findById(catid).orElse(null);
+
+		if (catentity == null) {
+			throw new BMSException("No Books by " + catid);
 		}
 		return catentity.getBook().stream().map(parser::parse).collect(Collectors.toList());
 	}
