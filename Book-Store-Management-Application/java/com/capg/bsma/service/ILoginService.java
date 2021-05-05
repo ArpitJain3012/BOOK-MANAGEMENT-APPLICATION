@@ -1,5 +1,7 @@
 package com.capg.bsma.service;
 
+import java.util.List;
+
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.UserModel;
 
@@ -16,7 +18,7 @@ public interface ILoginService {
 	// view users by user id
 	public UserModel getById(Long id) throws BMSException;
 
-	// view user by password
-	public UserModel getByPassword(String password) throws BMSException;
+	// list user details
+	public List<UserModel> listUsers() throws BMSException;
 
 }

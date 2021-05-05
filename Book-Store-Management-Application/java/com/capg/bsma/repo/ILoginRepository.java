@@ -10,9 +10,5 @@ import com.capg.bsma.entity.UserEntity;
 
 @Repository
 public interface ILoginRepository extends JpaRepository<UserEntity, Long> {
-	// calling exist by password method in service and API
-	boolean existsByPassword(String password);
-	
-	// calling find by password method in service and API
-	UserEntity findByPassword(String password);
+
 }

@@ -2,9 +2,10 @@ package com.capg.bsma.service.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import com.capg.bsma.entity.UserEntity;
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.UserModel;
@@ -59,7 +61,7 @@ public class LoginServiceImplTest {
 	@DisplayName("LoginServiceImpl::removeuser should return list of existing packages as ss")
 	void testRemoveUser() throws BMSException {
 		UserEntity testdata = new UserEntity(101L, "arpit@gmail.com", "arpitjain1234", "President");
-		
+
 		Mockito.when(userrepo.findById(101L)).thenReturn(Optional.of(testdata));
 		Mockito.doNothing().when(userrepo).deleteById(101L);
 
@@ -88,7 +90,7 @@ public class LoginServiceImplTest {
 	 * Test Case 4 -view user by id
 	 */
 	@Test
-	@DisplayName("ILoginServiceImpl::method dhoul return user by id ")
+	@DisplayName("ILoginServiceImpl::method should return user by id ")
 	void testViewUser() throws BMSException {
 		UserEntity testdata = new UserEntity(1004L, "arpit@gmail.com", "arpitjain1235", "Vice-President");
 		UserModel expected = new UserModel(1004L, "arpit@gmail.com", "arpitjain1235", "Vice-President");
@@ -100,18 +102,25 @@ public class LoginServiceImplTest {
 	}
 
 	/**
-	 * Test Case 4 -view user by id
+	 * Test case - retrieving list of user
 	 */
 	@Test
-	@DisplayName("ILoginServiceImpl::method should return user by password ")
-	void testViewUser2() throws BMSException {
-		UserEntity testdata = new UserEntity(1004L, "arpit@gmail.com", "arpitjain1235", "Vice-President");
-		UserModel expected = new UserModel(1004L, "arpit@gmail.com", "arpitjain1235", "Vice-President");
+	@DisplayName("IUserServiceImpl::listalluser should return list of existing user details from database")
+	void testListAllUser() throws BMSException {
 
-		Mockito.when(userrepo.findByPassword(testdata.getPassword())).thenReturn(Optional.of(testdata).get());
-		UserModel actual = lsImpl.getByPassword(testdata.getPassword());
+		// entering mock values into the Entity constructor
+		List<UserEntity> testdata = Arrays.asList(
+				new UserEntity[] { new UserEntity(1004L, "arpit@gmail.com", "arpitjain1235", "Vice-President") });
+
+		// find all method is called
+		Mockito.when(userrepo.findAll()).thenReturn(testdata);
+
+		// entering mock values into the Model constructor
+		List<UserModel> expected = Arrays
+				.asList(new UserModel[] { new UserModel(1004L, "arpit@gmail.com", "arpitjain1235", "Vice-President") });
+
+		List<UserModel> actual = lsImpl.listUsers();
 		assertEquals(expected, actual);
-
 	}
 
 }

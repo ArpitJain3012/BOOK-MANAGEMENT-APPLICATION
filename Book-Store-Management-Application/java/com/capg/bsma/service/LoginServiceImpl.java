@@ -1,5 +1,9 @@
 package com.capg.bsma.service;
 
+import java.util.List;
+
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,18 +93,16 @@ public class LoginServiceImpl implements ILoginService {
 	 */
 	@Override
 	public UserModel getById(Long id) throws BMSException {
-		if (!ilr.existsById(id))
+		if (ilr.existsById(id))
 			throw new BMSException("No user found for the given id");
 		return parser.parse(ilr.findById(id).get());
 	}
 
 	/*
-	 * getByPassword is use to get password from user in bsma
+	 * retrieving list of user from database
 	 */
 	@Override
-	public UserModel getByPassword(String password) throws BMSException {
-		if (!ilr.existsByPassword(password))
-			throw new BMSException("No user found for the given password");
-		return parser.parse(ilr.findByPassword(password));
+	public List<UserModel> listUsers() throws BMSException {
+		return ilr.findAll().stream().map(parser::parse).collect(Collectors.toList());
 	}
 }

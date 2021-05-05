@@ -1,5 +1,7 @@
 package com.capg.bsma.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,21 +26,20 @@ public class LoginAPI {
 	private LoginServiceImpl lsimpl;
 
 	/*
+	 * to retrieve all cuser return : List<userr> params : NIL
+	 */
+	@GetMapping
+	public ResponseEntity<List<UserModel>> findAllUserAction() throws BMSException {
+		return new ResponseEntity<>(lsimpl.listUsers(), HttpStatus.OK);
+	}
+
+	/*
 	 * user id should be alpha numerical and between 1-10
 	 */
 
 	@GetMapping("/{userId}")
 	public ResponseEntity<UserModel> getById(@PathVariable("userId") Long id) throws BMSException {
 		return ResponseEntity.ok(lsimpl.getById(id));
-	}
-
-	/*
-	 * password should be alpha numeri with spl. character and strength should be
-	 * 8-20 characters
-	 */
-	@GetMapping("/{password:[a-zA-Z0-9!@_]{8,20}}")
-	public ResponseEntity<UserModel> getByPassword(@PathVariable("password") String password) throws BMSException {
-		return ResponseEntity.ok(lsimpl.getByPassword(password));
 	}
 
 	/*
