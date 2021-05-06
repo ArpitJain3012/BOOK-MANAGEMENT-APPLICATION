@@ -47,8 +47,8 @@ public class EMParserOrderDetails {
 	 */
 	public OrderDetailsModel parse(OrderDetailEntity source) {
 		return source == null ? null
-				: new OrderDetailsModel(source.getOrder_detail_Id(), source.getQuantity(), source.getBook().getBookId(),
-						source.getBookorders().getOrderId());
+				: new OrderDetailsModel(source.getOrder_detail_Id(), source.getQuantity(),
+						source.getBookorders().getOrderId(),source.getBook().getBookId());
 	}
 
 }
