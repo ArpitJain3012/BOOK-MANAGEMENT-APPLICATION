@@ -21,7 +21,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.capg.bsma.entity.BookOrderEntity;
 import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.exception.BMSException;
-import com.capg.bsma.model.AddressModel;
 import com.capg.bsma.model.BookOrderModel;
 import com.capg.bsma.repo.IBookOrderRepository;
 import com.capg.bsma.service.BookOrderServiceImpl;

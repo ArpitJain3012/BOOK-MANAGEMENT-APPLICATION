@@ -105,7 +105,7 @@
 	VALUES (106,'Sapiens','Yuval Noah','brief history of humankind','7878789432908',550, '07-apr-2011','01-aug-2014',12);
 	
 	INSERT INTO Books
-	VALUES (107,'Steve jobs','Walter Isaacson','life story of Steve Jobs','9856789432908',450, '24-oct-2011','30-nov-2015',13);
+	VALUES (108,'One Piece','Echiro Oda','Journey of a Pirate King','9856789432908',450, '12-dec-1999','03-may-2021',13);
 	
 	INSERT INTO Books
 	VALUES (109,'Dracula','Bram Stoker','horror novel','8876789432999',460, '26-may-1897','30-apr-2008',16);
@@ -277,7 +277,7 @@
 		 VALUES(22,'One Piece ','changed my life ','5star','21-feb-2021',108,3);
 		 
 		  INSERT INTO Review
-		 VALUES(23,'worst book ever','refund my money back','1star','13-mar-2021',101,2);
+		 VALUES(23,'Naruto','great MC','5star','13-mar-2021',101,2);
 		 
 		  
 		  INSERT INTO Review

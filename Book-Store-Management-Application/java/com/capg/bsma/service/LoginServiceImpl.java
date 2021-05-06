@@ -93,7 +93,7 @@ public class LoginServiceImpl implements ILoginService {
 	 */
 	@Override
 	public UserModel getById(Long id) throws BMSException {
-		if (ilr.existsById(id))
+		if (!ilr.existsById(id))
 			throw new BMSException("No user found for the given id");
 		return parser.parse(ilr.findById(id).get());
 	}

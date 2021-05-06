@@ -95,6 +95,8 @@ public class LoginServiceImplTest {
 		UserEntity testdata = new UserEntity(1004L, "arpit@gmail.com", "arpitjain1235", "Vice-President");
 		UserModel expected = new UserModel(1004L, "arpit@gmail.com", "arpitjain1235", "Vice-President");
 
+		Mockito.when(userrepo.existsById(testdata.getUserId())).thenReturn(true);
+
 		Mockito.when(userrepo.findById(testdata.getUserId())).thenReturn(Optional.of(testdata));
 		UserModel actual = lsImpl.getById(testdata.getUserId());
 		assertEquals(expected, actual);
