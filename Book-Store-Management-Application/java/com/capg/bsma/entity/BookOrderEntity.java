@@ -26,11 +26,11 @@ public class BookOrderEntity {
 	private Long orderId;
 
 	// order date for book
-	@Column(name = "Order_Date", length = 20)
+	@Column(name = "order_Date")
 	private LocalDate OrderDate;
 
 	// order total for book
-	@Column(name = "Order_Total", length = 20)
+	@Column(name = "order_Total", length = 20)
 	private BigDecimal OrderTotal;
 
 	// status of order( example="pending")..

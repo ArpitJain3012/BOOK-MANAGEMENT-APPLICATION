@@ -1,5 +1,6 @@
 package com.capg.bsma.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,9 @@ public class UserModel {
 	@NotEmpty(message = "role cannot be blank")
 	private String role;
 
+	@Valid
+	private Long customerId;
+	
 	// default constructor
 	public UserModel() {
 		// Intentionally left blank
@@ -36,12 +40,14 @@ public class UserModel {
 			@NotNull(message = "user id cannot be null") @NotBlank(message = "user id cannot be blank") Long userId,
 			@Pattern(regexp = "\"^[a-zA-Z0-9_!#$%&'*+/=?{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Invalid email id") @NotNull(message = "Email cannot be null") String email,
 			@Pattern(regexp = "[a-zA-Z0-9!@_]{8,20}", message = "Invalid password") @NotNull(message = "Password cannot be null") String password,
-			@NotNull(message = "role cannot be null") @NotEmpty(message = "role cannot be blank") String role) {
+			@NotNull(message = "role cannot be null") @NotEmpty(message = "role cannot be blank") String role,
+			@Valid Long customerId) {
 		super();
 		this.userId = userId;
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		this.customerId = customerId;
 	}
 
 	/*
@@ -78,7 +84,13 @@ public class UserModel {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public Long getCustomerId() {
+		return customerId;
+	}
 
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
+	}
 	/*
 	 * generating hashcode
 	 */
@@ -86,6 +98,7 @@ public class UserModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
@@ -105,6 +118,11 @@ public class UserModel {
 		if (getClass() != obj.getClass())
 			return false;
 		UserModel other = (UserModel) obj;
+		if (customerId == null) {
+			if (other.customerId != null)
+				return false;
+		} else if (!customerId.equals(other.customerId))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -133,7 +151,7 @@ public class UserModel {
 
 	@Override
 	public String toString() {
-		return String.format("userId=%s, email=%s, password=%s, role=%s", userId, email, password, role);
+		return String.format("userId=%s, email=%s, password=%s, role=%s,customerId=%s", userId, email, password, role,customerId);
 	}
 
 }

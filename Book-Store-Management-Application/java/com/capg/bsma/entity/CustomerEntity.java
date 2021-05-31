@@ -1,5 +1,6 @@
 package com.capg.bsma.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -7,8 +8,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.capg.bsma.model.AddressModel;
@@ -17,7 +20,9 @@ import com.capg.bsma.model.AddressModel;
  */
 @Entity
 @Table(name = "customer")
-public class CustomerEntity {
+public class CustomerEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	//primary key
 	@Id
 	@Column(name = "customer_Id")
@@ -60,6 +65,12 @@ public class CustomerEntity {
 	 */
 	@OneToMany(mappedBy = "cust1", cascade = CascadeType.ALL)
 	private Set<ReviewEntity> rev;
+
+	/*
+	 * one to one relation with login module
+	 */
+	@OneToOne(mappedBy="customer")
+	private UserEntity login;
 
 	//default constructor
 	public CustomerEntity() {
@@ -153,6 +164,15 @@ public class CustomerEntity {
 	public void setRev(Set<ReviewEntity> rev) {
 		this.rev = rev;
 	}
+	
+	public UserEntity getLogin() {
+		return login;
+	}
+
+	public void setLogin(UserEntity login) {
+		this.login = login;
+	}
+	
 	/*
 	 * hashcode generating
 	 */

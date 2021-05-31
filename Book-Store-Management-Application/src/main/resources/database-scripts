@@ -219,26 +219,30 @@
 		email varchar2(30) CONSTRAINTS user_email_un_nn UNIQUE NOT NULL,
 		password  varchar2(20) CONSTRAINTS user_password_un_nn UNIQUE NOT NULL,
 		role varchar2(15) CONSTRAINTS user_role_nn  NOT NULL);
-		INSERT INTO USERS (user_Id,email,password,role)
-		 VALUES(1000,'abhijeet@gmail.com','abhijeet123','Manager');
+		
+		 Alter table Users add customer_Id number(19);
+         ALTER TABLE Users
+         ADD CONSTRAINT users_customer_Id_fk
+         FOREIGN KEY (customer_Id)
+         REFERENCES customer(customer_Id);
+  
+		INSERT INTO USERS 
+		 VALUES(1001,'arpitjain.aj3012@gmail.com','arpit123','customer',1);
 		 
-		INSERT INTO USERS (user_Id,email,password,role)
-		 VALUES(1001,'arpitjain.aj3012@gmail.com','arpit123','Sub-Manager');
-		 
-		 INSERT INTO USERS (user_Id,email,password,role)
-		 VALUES(1002,'kashif@gmail.com','kashif123','Service');
-		 
-		  
-		 INSERT INTO USERS (user_Id,email,password,role)
-		 VALUES(1003,'punya@gmail.com','punya123','Service');
-		 
-		  
-		 INSERT INTO USERS (user_Id,email,password,role)
-		 VALUES(1004,'akshitg@gmail.com','aksg123','Manager');
+		 INSERT INTO USERS 
+		 VALUES(1002,'kashif@gmail.com','kashif123','customer',2);
 		 
 		  
-		 INSERT INTO USERS (user_Id,email,password,role)
-		 VALUES(1005,'pulkityadav@gmail.com','pulyadv673','Service');
+		 INSERT INTO USERS 
+		 VALUES(1003,'punya@gmail.com','punya123','customer',3);
+		 
+		  
+		 INSERT INTO USERS 
+		 VALUES(1004,'akshitg@gmail.com','aksg123','customer',4);
+		 
+		  
+		 INSERT INTO USERS 
+		 VALUES(1005,'pulkityadav@gmail.com','pulyadv673','customer',5);
 		 
 		  
 		 INSERT INTO USERS (user_Id,email,password,role)

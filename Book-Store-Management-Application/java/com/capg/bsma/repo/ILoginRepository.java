@@ -10,5 +10,7 @@ import com.capg.bsma.entity.UserEntity;
 
 @Repository
 public interface ILoginRepository extends JpaRepository<UserEntity, Long> {
+	UserEntity findByEmailAndPassword(String email, String password);
 
+	
 }

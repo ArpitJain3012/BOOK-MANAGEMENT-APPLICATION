@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.BookOrderModel;
+import com.capg.bsma.model.ReviewModel;
 import com.capg.bsma.service.BookOrderServiceImpl;
 
 @RestController
 @RequestMapping(path = "/bookorder")
+@CrossOrigin
 public class BooksOrdersAPI {
 
 	@Autowired
@@ -71,6 +74,14 @@ public class BooksOrdersAPI {
 			throws BMSException {
 		bookordermod = bosimpl.editBookOrder(bookordermod);
 		return new ResponseEntity<>(bookordermod, HttpStatus.OK);
+	}
+	/*
+	 * list of orders by customer id
+	 */
+	@GetMapping("/{orderId}/CustomerModel")
+	public ResponseEntity<List<BookOrderModel>> listAllOrdersByCustomerAction(@PathVariable("orderId") Long cId)
+			throws BMSException {
+		return ResponseEntity.ok(bosimpl.viewOrderByCustomer(cId));
 	}
 
 }

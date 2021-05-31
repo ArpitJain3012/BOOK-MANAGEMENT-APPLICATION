@@ -20,4 +20,9 @@ public interface IBookOrderService {
 
 	// view books order in database by id
 	public BookOrderModel viewBookOrder(Long orderid) throws BMSException;
+	/*
+	 * Definition of viewOrderByCustomer method for viewing order by customer id 
+	 * */
+	public List<BookOrderModel> viewOrderByCustomer(Long customerId) throws BMSException;
+
 }

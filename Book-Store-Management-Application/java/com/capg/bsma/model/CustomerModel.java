@@ -19,7 +19,6 @@ public class CustomerModel {
 	/*
 	 * validations for all private members
 	 */
-	@NotNull(message = "Customer Id cannot be null")
 	private Long customerId;
 
 	@Pattern(regexp = "\"^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Invalid Email id")
@@ -51,7 +50,7 @@ public class CustomerModel {
 	}
 
 	// parameter constructor
-	public CustomerModel(@NotNull(message = "Customer Id cannot be null") Long customerId,
+	public CustomerModel( Long customerId,
 			@Pattern(regexp = "\"^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Invalid Email id") @NotNull(message = "Email cannot be omitted") String email,
 			@NotEmpty(message = "full name cannot be empty") @NotNull(message = "full name cannot be null") String fullName,
 			@Pattern(regexp = "[a-zA-Z0-9 @_]{8,20}", message = "Inavlid password ") @NotNull(message = "Password cannot be null") String password,

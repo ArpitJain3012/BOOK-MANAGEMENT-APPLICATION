@@ -67,8 +67,8 @@ public class BookOrderModel {
 		super();
 		this.orderId = orderId;
 		this.custId = custId;
-		OrderDate = orderDate;
-		OrderTotal = orderTotal;
+		this.OrderDate = orderDate;
+		this.OrderTotal = orderTotal;
 		this.status = status;
 		this.paymentMethod = paymentMethod;
 		this.recipientphone = recipientphone;

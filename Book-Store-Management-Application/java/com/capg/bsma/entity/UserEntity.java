@@ -3,6 +3,8 @@ package com.capg.bsma.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /*
@@ -16,6 +18,7 @@ public class UserEntity {
 	@Id
 	@Column(name = "user_Id")
 	private Long userId;
+
 	// email id of customer
 	@Column(name = "email", length = 30)
 	private String email;
@@ -28,18 +31,23 @@ public class UserEntity {
 	@Column(name = "role", length = 10)
 	private String role;
 
+	@OneToOne
+	@JoinColumn(name = "customer_Id")
+	private CustomerEntity customer;
+
 	// default constructor
 	public UserEntity() {
 		/* Intentionally left blank */
 	}
 
 	// parameter constructor
-	public UserEntity(Long userId, String email, String password, String role) {
+	public UserEntity(Long userId, String email, String password, String role, CustomerEntity customer) {
 		super();
 		this.userId = userId;
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		this.customer = customer;
 	}
 	/*
 	 * setters and getters generating
@@ -77,6 +85,14 @@ public class UserEntity {
 		this.role = role;
 	}
 
+	public CustomerEntity getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(CustomerEntity customer) {
+		this.customer = customer;
+	}
+
 	/*
 	 * hashcode generating
 	 */
@@ -84,6 +100,7 @@ public class UserEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
@@ -92,7 +109,7 @@ public class UserEntity {
 	}
 
 	/*
-	 * equals method generating
+	 * equals mathod generating
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -103,6 +120,11 @@ public class UserEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		UserEntity other = (UserEntity) obj;
+		if (customer == null) {
+			if (other.customer != null)
+				return false;
+		} else if (!customer.equals(other.customer))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -125,13 +147,15 @@ public class UserEntity {
 			return false;
 		return true;
 	}
+
 	/*
 	 * to string generating
 	 */
 
 	@Override
 	public String toString() {
-		return String.format("userId=%s, email=%s, password=%s, role=%s", userId, email, password, role);
+		return String.format("userId=%s, email=%s, password=%s, role=%s, customer=%s", userId, email, password, role,
+				customer);
 	}
 
 }

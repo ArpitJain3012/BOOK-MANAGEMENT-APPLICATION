@@ -1,7 +1,7 @@
 package com.capg.bsma.service;
 
 import java.util.List;
-
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capg.bsma.entity.BookOrderEntity;
+import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.BookOrderModel;
 import com.capg.bsma.repo.IBookOrderRepository;
+import com.capg.bsma.repo.ICustomerRepository;
 
 /*
  * implementing service method for book order 
@@ -25,6 +27,12 @@ public class BookOrderServiceImpl implements IBookOrderService {
 	@Autowired
 	private EMParserBookOrder parser;
 
+	/*
+	 * Customer Repository is Autowired
+	 * */
+	@Autowired
+	private ICustomerRepository custRepo;
+	
 	// default constructor
 	public BookOrderServiceImpl() {
 		this.parser = new EMParserBookOrder();
@@ -104,5 +112,16 @@ public class BookOrderServiceImpl implements IBookOrderService {
 		} else {
 			return parser.parse(ibr.findById(orderid).get());
 		}
+	}
+
+	@Override
+	public List<BookOrderModel> viewOrderByCustomer(Long customerId) throws BMSException {
+		CustomerEntity order = custRepo.findById(customerId).orElse(null);
+		
+		if (order == null) {
+			throw new BMSException("No custome with #" + customerId + " present");
+		}
+		return order.getBo().stream().map(parser::parse).collect(Collectors.toList());
+
 	}
 }

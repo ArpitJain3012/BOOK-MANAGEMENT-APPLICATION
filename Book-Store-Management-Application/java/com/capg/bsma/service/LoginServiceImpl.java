@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capg.bsma.entity.CustomerEntity;
 import com.capg.bsma.entity.UserEntity;
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.UserModel;
@@ -20,89 +21,69 @@ import com.capg.bsma.repo.ILoginRepository;
 @Service
 public class LoginServiceImpl implements ILoginService {
 
+	public static final String NOT_FOUND = "no user with id #";
+	public static final String PRESENT = " present";
+
+	/*
+	 * Login Repository is Autowired
+	 */
+
 	@Autowired
-	private ILoginRepository ilr;
+	private ILoginRepository loginRepository;
+
+	/*
+	 * EMParserLogin is Autowired
+	 */
 
 	@Autowired
 	private EMParserUser parser;
 
-//default constructor
+	/*
+	 * Default Constructor
+	 */
+
 	public LoginServiceImpl() {
 		this.parser = new EMParserUser();
 	}
 
-//parametr constructor
-	public LoginServiceImpl(ILoginRepository ilr) {
+	/*
+	 * Parameterized constructor for assigning
+	 */
+
+	public LoginServiceImpl(ILoginRepository loginRepository) {
 		super();
-		this.ilr = ilr;
+		this.loginRepository = loginRepository;
 		this.parser = new EMParserUser();
 	}
 
-	@Transactional
-	@Override
 	/*
-	 * addUseris used to add user so that new user can use bsma
+	 * Implementation of signIn method to signIn a user
 	 */
-	public UserModel addUser(UserModel user) throws BMSException {
 
-		if (user != null) {
-			if (ilr.existsById(user.getUserId())) {
-
-				throw new BMSException("User with given Id already exists");
-			} else {
-				user = parser.parse(ilr.save(parser.parse(user)));
-			}
-
-		}
-		return user;
+	@Override
+	public UserModel signIn(String email, String password) throws BMSException {
+		return parser.parse(loginRepository.findByEmailAndPassword(email, password));
 	}
 
-	@Transactional
-	@Override
 	/*
-	 * removeUser is use to remove user from bsma
+	 * Implementation of signOut method to signOut a user
 	 */
-	public boolean removedUser(Long userid) throws BMSException {
 
-		UserEntity user = ilr.findById(userid).orElse(null);
-		if (user == null) {
-			throw new BMSException("no user with id # " + userid + " present");
+	@Override
+	public boolean signOut(UserModel login) throws BMSException {
+		// implementation is done during front end
+		return false;
+	}
+
+	@Override
+	public UserModel addUser(UserModel login) throws BMSException {
+
+		if (login.getUserId() == null) {
+			throw new BMSException(NOT_FOUND + login.getUserId() + PRESENT);
 		} else {
-			ilr.deleteById(userid);
+
+			login = parser.parse(loginRepository.save(parser.parse(login)));
 		}
-		return true;
-	}
-
-	@Transactional
-	@Override
-	/*
-	 * updateUser is used to update user info and print message after completion.
-	 */
-	public UserModel updateUser(UserModel user) throws BMSException {
-		if (user != null) {
-			if (!ilr.existsById(user.getUserId())) {
-				throw new BMSException("No such user here");
-			}
-			user = parser.parse(ilr.save(parser.parse(user)));
-		}
-		return user;
-	}
-
-	/*
-	 * getById is use to get user Id from bsma
-	 */
-	@Override
-	public UserModel getById(Long id) throws BMSException {
-		if (!ilr.existsById(id))
-			throw new BMSException("No user found for the given id");
-		return parser.parse(ilr.findById(id).get());
-	}
-
-	/*
-	 * retrieving list of user from database
-	 */
-	@Override
-	public List<UserModel> listUsers() throws BMSException {
-		return ilr.findAll().stream().map(parser::parse).collect(Collectors.toList());
+		return login;
 	}
 }

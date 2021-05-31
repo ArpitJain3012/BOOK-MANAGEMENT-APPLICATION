@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,58 +17,49 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capg.bsma.exception.BMSException;
 import com.capg.bsma.model.UserModel;
+import com.capg.bsma.service.ILoginService;
 import com.capg.bsma.service.LoginServiceImpl;
 
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/login")
+@CrossOrigin
 public class LoginAPI {
 
+	/*
+	 * Login Service is Autowired 
+     */
+	
 	@Autowired
-	private LoginServiceImpl lsimpl;
+	private ILoginService loginService;
 
 	/*
-	 * to retrieve all cuser return : List<userr> params : NIL
+	 * to login
+	 * params : userId
 	 */
-	@GetMapping
-	public ResponseEntity<List<UserModel>> findAllUserAction() throws BMSException {
-		return new ResponseEntity<>(lsimpl.listUsers(), HttpStatus.OK);
+	
+	@PostMapping("/signin")
+	public ResponseEntity<UserModel> user(@RequestBody UserModel login) throws BMSException {
+		String tempUserEmail = login.getEmail();
+		String tempPassword = login.getPassword();
+		if(tempUserEmail != null && tempPassword !=null ) {
+			login=loginService.signIn(tempUserEmail, tempPassword);
+		}if(login == null) {
+			throw new BMSException("Bad Credentials");
+		}
+		return new ResponseEntity<>(login,HttpStatus.OK);
+
 	}
-
+	
 	/*
-	 * user id should be alpha numerical and between 1-10
+	 * to register new user
+	 * params : login
 	 */
-
-	@GetMapping("/{userId}")
-	public ResponseEntity<UserModel> getById(@PathVariable("userId") Long id) throws BMSException {
-		return ResponseEntity.ok(lsimpl.getById(id));
-	}
-
-	/*
-	 * to add an user return : UserModel params : User object
-	 */
+	
 	@PostMapping
-	public ResponseEntity<UserModel> addUserAction(@RequestBody UserModel user) throws BMSException {
-		user = lsimpl.addUser(user);
-		return new ResponseEntity<>(user, HttpStatus.CREATED);
-	}
-
-	/*
-	 * to remove an user return : void params : user Id
-	 */
-	@DeleteMapping("/{userId}")
-	public ResponseEntity<Boolean> removeByUserIdAction(@PathVariable("userId") Long userId) throws BMSException {
-		Boolean res = lsimpl.removedUser(userId);
-		ResponseEntity<Boolean> response = new ResponseEntity<Boolean>(res, HttpStatus.OK);
-		return response;
-	}
-
-	/*
-	 * to update an user return : User params : User
-	 */
-	@PutMapping
-	public ResponseEntity<UserModel> updateUserAction(@RequestBody UserModel user) throws BMSException {
-		user = lsimpl.updateUser(user);
-		return new ResponseEntity<>(user, HttpStatus.OK);
+	public ResponseEntity<UserModel> addUser(@RequestBody UserModel login) throws BMSException {
+		login = loginService.addUser(login);
+		return new ResponseEntity<>(login, HttpStatus.CREATED);
+		
 	}
 
 }
