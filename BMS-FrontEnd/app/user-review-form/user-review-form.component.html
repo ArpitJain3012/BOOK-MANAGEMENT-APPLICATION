@@ -1,0 +1,74 @@
+<div class="col-sm-6 mx-auto">
+    <h3 style="color:limegreen;text-align: center;">{{ isEditing ? "Edit" : "New"}} Review</h3>
+
+    <form class="form" [formGroup]="revForm" (ngSubmit)="handleSubmit()" style="color: lavenderblush;">
+        <div class="form-group">
+            <label class="form-control-label">Review Id:</label>
+            <input type="number" formControlName="reviewId" placeholder="Enter review id" class="form-control" />
+            <div class="alert alert-danger" *ngIf="reviewIdfc.invalid && (reviewIdfc.touched || reviewIdfc.dirty)">
+                <span *ngIf="reviewIdfc.errors.required">This field is mandatory</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Customer Id:</label>
+            <input type="number" formControlName="custId" placeholder="Your Id" class="form-control" />
+            <div class="alert alert-danger" *ngIf="custIdfc.invalid && (custIdfc.touched || custIdfc.dirty)">
+                <span *ngIf="custIdfc.errors.required">This field is mandatory</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Book Id:</label>
+            <input type="number" formControlName="bookid" placeholder="Book Id You wanna review" class="form-control" />
+            <div class="alert alert-danger" *ngIf="bookidfc.invalid && (bookidfc.touched || bookidfc.dirty)">
+                <span *ngIf="bookIdfc.errors.required">This field is mandatory</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Headline :</label>
+            <input type="text" formControlName="headline" placeholder="Book Title" class="form-control" />
+            <div class="alert alert-danger" *ngIf="headlinefc.invalid && (headlinefc.touched || headlinefc.dirty)">
+                <span *ngIf="headlinefc.errors.required">This field is mandatory</span>
+                <span *ngIf="headlinefc.errors.minLength">Minimum 10 characters expected</span>
+                <span *ngIf="headlinefc.errors.maxLength">Maximum 50 characters expected</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Comment :</label>
+            <input type="text" formControlName="comment" placeholder="Give your heartfelt comment" class="form-control" />
+            <div class="alert alert-danger" *ngIf="commentfc.invalid && (commentfc.touched || commentfc.dirty)">
+                <span *ngIf="commentfc.errors.required">This field is mandatory</span>
+                <span *ngIf="commentfc.errors.minLength">Minimum 20 characters expected</span>
+                <span *ngIf="commentfc.errors.maxLength">Maximum 50 characters expected</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Rating: </label>
+            <select formControlName="rating" class="form-control">
+                <option *ngFor="let r of rates" [value]="r">
+                    {{r}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Review On :</label>
+            <input type="date" formControlName="reviewOn" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.reviewOnfc.invalid && (this.reviewOnfc.touched || this.reviewOnfc.dirty)">
+                <span *ngIf="reviewOnfc.errors.required">This field is mandatory</span>
+            </div>
+        </div>
+
+
+
+
+
+        <button class="btn btn-block btn-primary" [disabled]="revForm.invalid">
+            Save
+        </button>
+    </form>
+</div>

@@ -1,0 +1,40 @@
+<h3 style="color:limegreen;text-align: center;">Book List</h3>
+<app-msgbox *ngIf="err && !books">
+    <strong >loading ...please wait...</strong>
+</app-msgbox>
+<app-msgbox *ngIf="err" [isError]="true">
+    <strong >{{ err }}</strong>
+</app-msgbox>
+
+<table class="table table-bordered border-light table-hover" *ngIf="books">
+    <thead>
+        <tr class="text-info">
+            <th>Book Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Isbn</th>
+            <th>Published date</th>
+            <th >Last updated date</th>
+            <th>Price</th>
+            <th>Category Id</th> 
+            <th colspan="1">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-light" *ngFor="let b of books">
+            <td>{{ b.bookId}} </td>
+            <td>{{ b.title }} </td>
+            <td>{{ b.author }} </td>
+            <td>{{ b.description }} </td>
+            <td>{{ b.isbn }} </td>
+            <td>{{ b.pubDate }} </td>
+            <td>{{ b.lastUpDate }} </td>
+            <td>{{b.price }} </td>
+            <td>{{b.categoryId}}</td>
+
+            <td><a class="btn btn-sm btn-danger" routerLink="/uheader/ubookorder/uadd">Order</a></td>
+            
+        </tr>
+    </tbody>
+</table>

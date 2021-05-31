@@ -1,0 +1,89 @@
+<div class="col-sm-6 mx-auto">
+    <h3 style="color:limegreen;text-align: center;">{{ isEditing ? "Edit" : "New"}} BookOrder</h3>
+
+    <form class="form" [formGroup]="bookorderForm" (ngSubmit)="handleSubmit()" style="color:lavenderblush;">
+        <div class="form-group">
+            <label class="form-control-label">Order Id:</label>
+            <input type="number" formControlName="orderId" placeholder="Enter Book Order Id" class="form-control" />
+
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Customer Id:</label>
+            <input type="number" formControlName="custId" placeholder="Enter Customer Id" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.custIdfc.invalid && (this.custIdfc.touched || this.custIdfc.dirty)">
+                <span *ngIf="custIdfc.errors.required">Mandatory field</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Order Date :</label>
+            <input type="date" formControlName="orderDate" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.OrderDatefc.invalid && (this.OrderDatefc.touched || this.OrderDatefc.dirty)">
+                <span *ngIf="OrderDatefc.errors.required">Mandatory field</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Order Total :</label>
+            <input type="number" formControlName="orderTotal" placeholder="Enter Order Total" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="OrderTotalfc.invalid && (OrderTotalfc.touched || OrderTotalfc.dirty)">
+                <span *ngIf="OrderTotalfc.errors.required">Mandatory field</span>
+                <span *ngIf="OrderTotalfc.errors.min">Minimum 1 is expected</span>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Status: </label>
+            <select formControlName="status"  class="form-control">
+                <option value="delivered">Delivered
+                </option>
+                <option value="dispatched">Dispatched
+                </option>
+                <option value="pending">Pending
+                </option>
+                <option value="out for delivery">Out For Delivery
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Payment Method: </label>
+            <select formControlName="paymentMethod" class="form-control">
+                <option *ngFor="let pm of paymentMethod" [value]="pm">
+                    {{pm}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Recipient Phone :</label>
+            <input type="number" formControlName="recipientphone" placeholder="Enter Customer Phone Number" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="recipientphonefc.invalid && (recipientphonefc.touched || recipientphonefc.dirty)">
+                <span *ngIf="recipientphonefc.errors.required">Mandatory field</span>
+                <span *ngIf="recipientphonefc.errors.pattern">Must contain 10 digits</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Recipient Name:</label>
+            <input type="text" formControlName="recipientName" placeholder="Enter Customer Name" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="recipientNamefc.invalid && (recipientNamefc.touched || recipientNamefc.dirty)">
+                <span *ngIf="recipientNamefc.errors.required">Mandatory field</span>
+                <span *ngIf="recipientNamefc.errors.minLength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+
+
+
+        <button class="btn btn-block btn-primary" [disabled]="bookorderForm.invalid">
+            Save
+        </button>
+    </form>
+</div>

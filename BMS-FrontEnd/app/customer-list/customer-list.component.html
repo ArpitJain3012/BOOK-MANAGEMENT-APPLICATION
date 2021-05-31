@@ -1,0 +1,44 @@
+<h3 style="color:limegreen;text-align: center;" >Customer List</h3>
+<app-msgbox *ngIf="!err && !cust">
+    <strong>loading ... please wait ...</strong>
+</app-msgbox>
+
+<app-msgbox *ngIf="err" [isError]="true">
+    <strong>{{ err }} </strong>
+</app-msgbox>
+
+<table class="table table-bordered border-light table-hover" *ngIf="cust" >
+    <thead>
+        <tr class="text-info">
+            <th>Customer ID</th>
+            <th>Full Name</th>
+            <th>Registration Date</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>password</th>
+            <th>House No</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Pincode</th>
+            <th colspan="2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr  *ngFor="let c of cust" class="text-light">
+            <td>{{ c.customerId }} </td>
+            <td>{{ c.fullName }} </td>
+            <td>{{ c.registerOn }} </td>
+            <td>{{ c.mobileNumber }} </td>
+            <td>{{ c.email }} </td>
+            <td>{{ c.password }} </td>
+            <td>{{ c.am.houseno }}</td>
+            <td>{{ c.am.country }}</td>
+            <td>{{ c.am.city }}</td>
+            <td>{{ c.am.pincode }}</td>
+
+            <td><button class="btn btn-sm btn-danger" (click)="delete(c.customerId)">Delete Customer</button></td>
+            <td><a class="btn btn-sm btn-info" routerLink="/headcusts/custs/edit/{{c.customerId}}">Edit</a></td>
+        </tr>
+
+    </tbody>
+</table>

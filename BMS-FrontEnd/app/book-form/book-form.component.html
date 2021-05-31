@@ -1,0 +1,93 @@
+<div class="col-sm-6 mx-auto">
+    <h3 style="color:limegreen;text-align: center;">{{ isEditing ? "Edit" : "New"}} Book</h3>
+
+    <form class="form" [formGroup]="bookForm" (ngSubmit)="handleSubmit()" style="color:lavenderblush;">
+        <div class="form-group">
+            <label class="form-control-label">Book Id:</label>
+            <input type="number" formControlName="bookId" placeholder="Enter Book Id" class="form-control" />
+
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Title:</label>
+            <input type="text" formControlName="title" placeholder="Enter Book Title" class="form-control" />
+            <div class="alert alert-danger" *ngIf="titlefc.invalid && (titlefc.touched || titlefc.dirty)">
+                <span *ngIf="titlefc.errors.required">Mandatory field</span>
+                <span *ngIf="titlefc.errors.minLength">Minimum 3 characters are required</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Author:</label>
+            <input type="text" formControlName="author" placeholder="Enter Book Author" class="form-control" />
+            <div class="alert alert-danger" *ngIf="authorfc.invalid && (authorfc.touched || authorfc.dirty)">
+                <span *ngIf="authorfc.errors.required">Mandatory field</span>
+                <span *ngIf="authorfc.errors.minLength">Minimum 3 characters are required</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Description:</label>
+            <input type="text" formControlName="description" placeholder="Enter Description" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="descriptionfc.invalid && (descriptionfc.touched || descriptionfc.dirty)">
+                <span *ngIf="descriptionfc.errors.required">Mandatory field</span>
+                <span *ngIf="descriptionfc.errors.minLength">Minimum 3 characters are required</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Isbn:</label>
+            <input type="text" formControlName="isbn" placeholder="Enter International Standard Book Number" class="form-control" />
+            <div class="alert alert-danger" *ngIf="isbnfc.invalid && (isbnfc.touched || isbnfc.dirty)">
+                <span *ngIf="isbnfc.errors.required">Mandatory field</span>
+                <span *ngIf="isbnfc.errors.minLength">Minimum 3 characters are required</span>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="form-control-label">Price :</label>
+            <input type="text" formControlName="price" placeholder="Enter Book Price" class="form-control" />
+            <div class="alert alert-danger" *ngIf="pricefc.invalid && (pricefc.touched || pricefc.dirty)">
+                <span *ngIf="pricefc.errors.required">Mandatory field</span>
+                <span *ngIf="pricefc.errors.min">Minimum 100 is expected</span>
+                <span *ngIf="pricefc.errors.max">Maximum 5000 is expected</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Published Date :</label>
+            <input type="date" formControlName="pubDate" placeholder="Enter Book Published Date" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.pubDatefc.invalid && (this.pubDatefc.touched || this.pubDatefc.dirty)">
+                <span *ngIf="pubDatefc.errors.required">Mandatory field</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Last updated Date :</label>
+            <input type="date" formControlName="lastUpDate" placeholder="Enter Book Update Date" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.lastUpDatefc.invalid && (this.lastUpDatefc.touched || this.lastUpDatefc.dirty)">
+                <span *ngIf="lastUpDatefc.errors.required">Mandatory field</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Category Id:</label>
+            <input type="number" formControlName="categoryId" placeholder="Enter Category Id" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.categoryIdfc.invalid && (this.categoryIdfc.touched || this.categoryIdfc.dirty)">
+                <span *ngIf="categoryIdfc.errors.required">Mandatory field</span>
+            </div>
+
+        </div> 
+
+
+
+        <button class="btn btn-block btn-primary" [disabled]="bookForm.invalid">
+        Save
+        </button>
+    </form>
+</div>

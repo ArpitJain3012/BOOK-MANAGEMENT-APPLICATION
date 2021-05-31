@@ -1,0 +1,107 @@
+<div class="col-sm-6 mx-auto">
+    <h3 style="color:limegreen;text-align: center;">{{ isEditing ? "Edit" : "New"}} BookOrder</h3>
+
+    <form class="form" [formGroup]="bookorderForm" (ngSubmit)="handleSubmit()" style="color: lavenderblush;">
+        <div class="form-group">
+            <label class="form-control-label">Order Id:</label>
+            <input type="number" formControlName="orderId" placeholder="Enter Book Order Id" class="form-control" />
+
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Customer Id:</label>
+            <input type="number" formControlName="custId" placeholder="Your Id" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.custIdfc.invalid && (this.custIdfc.touched || this.custIdfc.dirty)">
+                <span *ngIf="custIdfc.errors.required">Mandatory field</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Order Date :</label>
+            <input type="date" formControlName="orderDate" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.OrderDatefc.invalid && (this.OrderDatefc.touched || this.OrderDatefc.dirty)">
+                <span *ngIf="OrderDatefc.errors.required">Mandatory field</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Order Total :</label>
+            <input type="number" formControlName="orderTotal" placeholder="Total price of order" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="OrderTotalfc.invalid && (OrderTotalfc.touched || OrderTotalfc.dirty)">
+                <span *ngIf="OrderTotalfc.errors.required">Mandatory field</span>
+                <span *ngIf="OrderTotalfc.errors.min">Minimum 1 is expected</span>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Status: </label>
+            <input type="text" formControlName="status" class="form-control" />
+            <div class="alert alert-danger"
+            *ngIf="OrderTotalfc.invalid && (statusfc.touched || statusfc.dirty)">
+            <span *ngIf="statusfc.errors.required">Mandatory field</span>
+            
+            <!-- <select formControlName="status" class="form-control">
+                <option value="delivered">Delivered
+                </option>
+                <option value="dispatched">Dispatched
+                </option>
+                <option value="pending">Pending
+                </option>
+                <option value="out for delivery">Out For Delivery
+                </option>
+            </select> -->
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-control-label">Payment Method: </label>
+            <select formControlName="paymentMethod" class="form-control">
+               <option value="upi">UPI Payment</option>
+               <option value="Cash On Delivery">Cash On Delivery</option>
+               <option value="online">Credit/Debit</option>
+               <option value="Net Banking">Net Banking</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Recipient Phone :</label>
+            <input type="number" formControlName="recipientphone" placeholder="Your Mobile Number" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="recipientphonefc.invalid && (recipientphonefc.touched || recipientphonefc.dirty)">
+                <span *ngIf="recipientphonefc.errors.required">Mandatory field</span>
+                <span *ngIf="recipientphonefc.errors.pattern">Must contain 10 digits</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Recipient Name:</label>
+            <input type="text" formControlName="recipientName" placeholder="Your Name" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="recipientNamefc.invalid && (recipientNamefc.touched || recipientNamefc.dirty)">
+                <span *ngIf="recipientNamefc.errors.required">Mandatory field</span>
+                <span *ngIf="recipientNamefc.errors.minLength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+
+
+        <button class="btn btn-block btn-primary" [disabled]="bookorderForm.invalid">
+            Order
+        </button>
+        </div>
+    <div class="mt-4" *ngIf="bo.orderId != null && bo.orderDate !=null && bo.orderTotal !=null && bo.paymentMethod != null && bo.recipientName != null && bo.recipientphone !=null">
+        <p style="text-align: center;font-size: 25px;">Order Deatils</p>
+        <strong>Order Id : {{ bo.orderId | number }}</strong><br/><br/>
+        <strong>Order Date : {{ bo.orderDate | date }}</strong><br/><br/>
+        <strong>Order Status : {{ bo.status | string }}</strong><br/><br/>
+        <strong>Order Total : {{ bo.orderTotal | number }}</strong><br/><br/>
+        <strong>Order Payment Method : {{ bo.paymentMethod | string}}</strong><br/><br/>
+        <strong>Customer Name : {{ bo.recipientName | string }}</strong><br/><br/>
+        <strong>Customer Mobile Number : {{ bo.recipientPhone | string }}</strong>
+
+    </div> 
+</form>
+    
+</div>

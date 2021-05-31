@@ -1,0 +1,30 @@
+<nav class="navbar navbar-dark bg-warning navbar-expand-sm ">
+    <a routerLink="/headcusts/dashboard" class="navbar-brand text-danger"><i class="fa fa-book"></i> Book Management Application</a>
+    <ul class="navbar-nav">
+         <li class="nav-item">
+            <a routerLink="/headcusts/dashboard" class="nav-link text-success">Home</a>
+        </li> 
+        <li class="nav-item">
+            <a routerLink="/headcusts/custs" class="nav-link text-success">Customers</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="/headcusts/category" class="nav-link text-success">Category</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="/headcusts/books" class="nav-link text-success">Books</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink = "/headcusts/bookorder" class="nav-link text-success">Book Order</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink = "/headcusts/orders" class="nav-link text-success">Order Details</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink = "/headcusts/reviews" class="nav-link text-success">Reviews</a>
+        </li>
+        <li class = "nav-item">
+            <a class="nav-link text-danger" (click)="signOut()" href="##">Sign Out</a>
+        </li>
+    </ul>
+</nav>
+<router-outlet></router-outlet>

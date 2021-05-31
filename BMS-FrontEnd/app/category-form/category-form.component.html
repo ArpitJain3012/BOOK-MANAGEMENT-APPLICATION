@@ -1,0 +1,22 @@
+<div class="col-sm-6 mx-auto">
+    <h3 style="color:limegreen;text-align: center;">{{ isEditing ? "Edit" : "New"}} Category</h3>
+
+    <form class="form" [formGroup]="categoryForm" (ngSubmit)="handleSubmit()" style="color:lavenderblush;">
+        <div class="form-group">
+            <label class="form-control-label">Category Id:</label>
+            <input type="number" formControlName="categoryId" placeholder="Enter Category Id" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Category Name:</label>
+            <input type="text" formControlName="categoryName" placeholder="Enter Category Name" class="form-control" />
+            <div class="alert alert-danger" *ngIf="categoryNamefc.invalid && (categoryNamefc.touched || categoryNamefc.dirty)">
+                <span *ngIf="categoryNamefc.errors.required">Mandatory field</span>
+        
+            </div>
+        </div>
+
+        <button class="btn btn-block btn-primary" [disabled]="categoryForm.invalid">
+            Save
+            </button>
+        </form>
+    </div>

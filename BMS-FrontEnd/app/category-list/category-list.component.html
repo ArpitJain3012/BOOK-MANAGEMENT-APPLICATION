@@ -1,0 +1,25 @@
+<h3 style="color:limegreen;text-align: center;">Category List</h3>
+<app-msgbox *ngIf="err && !category">
+    <strong >loading ...please wait...</strong>
+</app-msgbox>
+<app-msgbox *ngIf="err" [isError]="true">
+    <strong >{{ err }}</strong>
+</app-msgbox>
+
+<table class="table table-bordered  border-light table-hover" *ngIf="category">
+    <thead>
+        <tr class="text-info">
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th colspan="2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cat of category" class="text-light">
+            <td>{{ cat.categoryId}} </td>
+            <td>{{ cat.categoryName }} </td>
+            <td><button class="btn btn-sm btn-danger" (click)="delete(cat.categoryId)">Delete</button></td>
+            <td><a class="btn btn-sm btn-info" routerLink="/headcusts/category/edit/{{cat.categoryId}}">Edit</a></td>
+        </tr>
+    </tbody>
+</table>

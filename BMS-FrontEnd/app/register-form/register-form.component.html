@@ -1,0 +1,66 @@
+<h1 class="p-4" style="font-style: italic;color: orange;text-align: center;background-color:cyan ;"> Book Management Application <i class="fa fa-book"></i></h1>
+
+<div class="col-sm-6 mx-auto">
+
+
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="handleSubmit()" style="color: lavenderblush;">
+        <h1> Register User </h1>
+        <small class="text-danger">{{ msg }}</small>
+    <div class="form-group">
+        <label class="form-control-label">User Id:</label>
+        <input type="number" formControlName="userId" class="form-control"  /> 
+        <!-- <div class="alert alert-danger" *ngIf="customerIdfc.invalid && (customerIdfc.touched || customerIdfc.dirty)">
+            <span *ngIf="customerIdfc.errors.required">This field is mandate</span>
+        </div> -->
+    </div>
+
+    <div class="form-group">
+        <label class="form-control-label">Email:</label>
+        <input type="email" formControlName="email" placeholder="Email Id you want to use for sign in.. " class="form-control" />
+        <div class="alert alert-danger" *ngIf="userEmailfc.invalid && (userEmailfc.touched || userEmailfc.dirty)">
+            <span *ngIf="userEmailfc.errors.email">This field should be valid</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-control-label">Password:</label>
+        <input type="password" formControlName="password" placeholder="Enter password you will remember.." class="form-control" />
+        <div class="alert alert-danger" *ngIf="passwordfc.invalid && (passwordfc.touched || passwordfc.dirty)">
+            <span *ngIf="passwordfc.errors.pattern">This field should be valid</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Role:</label>
+        <input type="text" formControlName="role"  class="form-control" />
+        <div class="alert alert-danger" *ngIf="rolefc.invalid && (rolefc.touched || rolefc.dirty)">
+            <span *ngIf="rolefc.errors.required">This field should be valid</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Customer Id:</label>
+        <input type="number" formControlName="customerId" placeholder="Enter your customer Id" class="form-control" />
+        <div class="alert alert-danger" *ngIf="customerIdfc.invalid && (customerIdfc.touched || customerIdfc.dirty)">
+            <span *ngIf="customerIdfc.errors.required">This field should be valid</span>
+        </div>
+    </div>
+
+    <button class="btn btn-block btn-primary" [disabled]="loginForm.invalid">
+        Register
+    </button>
+
+    &nbsp;&nbsp;&nbsp;
+    <a routerLink="/ulogin/usignin">
+    <button class="btn btn-block btn-primary">
+        Login
+
+    </button>Existing User?</a>
+
+    </form>
+</div>
+
+
+
+
+
+
+

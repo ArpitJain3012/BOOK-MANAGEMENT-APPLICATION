@@ -1,0 +1,87 @@
+<div class="col-sm-6 mx-auto">
+    <h3 style="color:limegreen;text-align: center;">{{ isEdit ? "Edit" : "New"}} Customer</h3>
+
+    <form class="form" [formGroup]="custForm" (ngSubmit)="handleSubmit()" style="color: lavenderblush;">
+        <div class="form-group">
+            <label class="form-control-label">Customer Id:</label>
+            <input type="number" formControlName="customerId" placeholder="Enter Customer Id" class="form-control" />
+            <div class="alert alert-danger" *ngIf="custIdfc.invalid && (custIdfc.touched || custIdfc.dirty)">
+                <span *ngIf="custIdfc.errors.required">This field is mandate</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Full Name:</label>
+            <input type="text" formControlName="fullName" placeholder="Enter Name" class="form-control" />
+            <div class="alert alert-danger" *ngIf="fnfc.invalid && (fnfc.touched || fnfc.dirty)">
+                <span *ngIf="fnfc.errors.required">This field is mandate</span>
+                <span *ngIf="fnfc.errors.minLength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Registeration Date :</label>
+            <input type="date" formControlName="registerOn" class="form-control" />
+            <div class="alert alert-danger" *ngIf="this.rfc.invalid && (this.rfc.touched || this.rfc.dirty)">
+                <span *ngIf="rfc.errors.required">This field is mandate</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Mobile :</label>
+            <input type="number" formControlName="mobileNumber" placeholder="Enter Mobile Number" class="form-control" />
+            <div class="alert alert-danger" *ngIf="mnfc.invalid && (mnfc.touched || mnfc.dirty)">
+                <span *ngIf="mnfc.errors.required">This field is mandate</span>
+                <span *ngIf="mnfc.errors.pattern">Must contain 10 digits</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Email :</label>
+            <input type="email" formControlName="email" placeholder="Enter Email Id" class="form-control" />
+            <div class="alert alert-danger" *ngIf="this.efc.invalid && (this.efc.touched || this.efc.dirty)">
+                <span *ngIf="efc.errors.required">This field is mandate</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Password :</label>
+            <input type="password" formControlName="password" placeholder="Enter Password" class="form-control" />
+            <div class="alert alert-danger" *ngIf="this.pfc.invalid && (this.pfc.touched || this.pfc.dirty)">
+                <span *ngIf="pfc.errors.required">This field is mandate</span>
+                <span *ngIf="pfc.errors.pattern">password should be alpha numeric and range must be 8-20
+                    characters</span>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">House Number :</label>
+            <input type="text" formControlName="houseno" placeholder="Enter House Number" class="form-control" />
+        </div>
+        <div class="alert alert-danger" *ngIf="this.housefc.invalid && (this.housefc.touched || this.housefc.dirty)">
+            <span *ngIf="housefc.errors.required">This field is mandate</span>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">City : </label>
+            <input type="text" formControlName="city" placeholder="Where are you from?" class="form-control" />
+        </div>
+        <div class="alert alert-danger" *ngIf="cityfc.invalid && (this.cityfc.touched || this.cityfc.dirty)">
+            <span *ngIf="cityfc.errors.required">City is Required</span>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Country : </label>
+            <input type="text" formControlName="country" placeholder="Which country do you belong?" class="form-control" />
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="this.countryfc.invalid && (this.countryfc.touched ||this.countryfc.dirty)">
+            <span *ngIf="countryfc.required">Country is Required</span>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Pincode :</label>
+            <input type="text" formControlName="pincode" placeholder="Enter pincode" class="form-control" />
+        </div>
+        <div class="alert alert-danger" *ngIf="this.pinfc.invalid && (this.pinfc.touched || this.pinfc.dirty)">
+            <span *ngIf="pinfc.errors.required">This field is mandate</span>
+        </div>
+
+        <button class="btn btn-block btn-primary" [disabled]="custForm.invalid">
+            Save
+        </button>
+
+    </form>
+</div>

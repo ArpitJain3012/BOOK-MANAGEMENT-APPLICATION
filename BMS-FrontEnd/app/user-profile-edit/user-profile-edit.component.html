@@ -1,0 +1,106 @@
+<h3 text-align="center" style="color:limegreen;text-align: center;">Update Profile</h3>
+<div class="col-sm-6 mx-auto text-light">
+    <form class="form" [formGroup]="customerForm" (ngSubmit)="handleSubmit()">
+        <small class="text-success">{{ msg }}</small>
+        <div class="form-group ">
+            <label class="form-control-label">Customer Id:</label>
+            <input type="number" formControlName="customerId" class="form-control" />
+            <!-- <div class="alert alert-danger" *ngIf="customerIdfc.invalid && (customerIdfc.touched || customerIdfc.dirty)">
+                <span *ngIf="customerIdfc.errors.required">This field is mandate</span>
+            </div> -->
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Email :</label>
+            <input type="email" formControlName="email" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.emailfc.invalid && (this.emailfc.touched || this.emailfc.dirty)">
+                <span *ngIf="emailfc.errors.required">This field is mandate</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Full Name:</label>
+            <input type="text" formControlName="fullName" class="form-control" />
+            <div class="alert alert-danger" *ngIf="fullNamefc.invalid && (fullNamefc.touched || fullNamefc.dirty)">
+                <span *ngIf="fullNamefc.errors.required">This field is mandate</span>
+                <span *ngIf="fullNamefc.errors.minLength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Password:</label>
+            <input type="text" formControlName="password" class="form-control" />
+            <div class="alert alert-danger" *ngIf="passwordfc.invalid && (passwordfc.touched || passwordfc.dirty)">
+                <span *ngIf="passwordfc.errors.required">This field is mandate</span>
+                <span *ngIf="passwordfc.errors.minLength">Minimum 4 characters expected</span>
+                <span *ngIf="passwordfc.errors.manLength">Minimum 15 characters expected</span>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="form-control-label">Mobile Number:</label>
+            <input type="text" formControlName="mobileNumber" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.mobileNumberfc.invalid && (this.mobileNumberfc.touched || this.mobileNumberfc.dirty)">
+                <span *ngIf="mobileNumberfc.errors.required">This field is mandate</span>
+                <span *ngIf="mobileNumberfc.errors.pattern">Must contain 10 digits</span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-control-label">Register Date:</label>
+            <input type="date" formControlName="registerOn" class="form-control" />
+            <div class="alert alert-danger"
+                *ngIf="this.registerOnfc.invalid && (this.registerOnfc.touched || this.registerOnfc.dirty)">
+                <span *ngIf="registerOnfc.errors.required">This field is mandate</span>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label class="form-control-label">House No:</label>
+            <input type="text" formControlName="houseno" class="form-control" />
+            <div class="alert alert-danger" *ngIf="housenofc.invalid && (housenofc.touched || housenofc.dirty)">
+                <span *ngIf="housenofc.errors.required">This field is mandate</span>
+                <span *ngIf="housenofc.errors.minLength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">City :</label>
+            <input type="text" formControlName="city" class="form-control" />
+            <div class="alert alert-danger" *ngIf="cityfc.invalid && (cityfc.touched || cityfc.dirty)">
+                <span *ngIf="cityfc.errors.required">This field is mandate</span>
+                <span *ngIf="cityfc.errors.minLength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Country : </label>
+            <input type="text" formControlName="country" class="form-control" />
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="this.countryfc.invalid && (this.countryfc.touched ||this.countryfc.dirty)">
+            <span *ngIf="countryfc.required">Country is Required</span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Pincode</label>
+            <input type="text" formControlName="pincode" class="form-control" />
+            <div class="alert alert-danger" *ngIf="pincodefc.invalid && (pincodefc.touched || pincodefc.dirty)">
+                <span *ngIf="pincodefc.errors.required">This field is mandate</span>
+                <span *ngIf="pincodefc.errors.minLength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+
+        <button class="btn btn-block btn-primary" [disabled]="customerForm.invalid">
+            Save
+        </button>
+    </form>
+</div>

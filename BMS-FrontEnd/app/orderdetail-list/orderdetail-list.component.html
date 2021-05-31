@@ -1,0 +1,37 @@
+<h3 style="color:limegreen;text-align: center;">Order Detail List</h3>
+
+<app-msgbox *ngIf = "err && !orderdetail">
+    <strong> loading pleases wait ... </strong>
+</app-msgbox>
+
+<app-msgbox *ngIf = "err" [isError]="true">
+    <strong> {{err}}</strong>
+</app-msgbox>
+
+<table class="table table-bordered border-light  table-hover" *ngIf="orderdetail">
+    <thead>
+        <tr class="text-info">
+            <th>Order Detail ID</th>
+            <th>Quantity</th>
+            <th>Book Order ID</th>
+            <th>Book ID</th>
+           
+            <th colspan="2"> Action</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let o of orderdetail" class="text-light">
+            <td>{{o.order_detail_Id }} </td>
+            <td>{{ o.quantity }} </td>
+            <td> {{o.bookorder_id}} </td>
+            <td>{{o.book_Id }} </td>
+           
+            
+            
+            <td><button class="btn btn-sm btn-danger" (click)="delete(o.order_detail_Id)">Delete</button></td>
+            <td><a class="btn btn-sm btn-info" routerLink="/headcusts/orders/edit/{{o.order_detail_Id}}">Update</a></td>
+
+        </tr>
+    </tbody>
+</table>

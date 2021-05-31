@@ -1,0 +1,45 @@
+<!-- <h3 style="color:limegreen;text-align: center;">Books By Category</h3>
+<app-msgbox *ngIf = "!err && !books">
+    <strong class="text-warning"> loading pleases wait ... </strong>
+</app-msgbox>
+
+<app-msgbox *ngIf = "err" [isError]="true">
+    <strong class="text-warning"> {{err}}</strong>
+</app-msgbox>
+<section align="center">
+    <br>
+    <input type="number" placeholder="Enter Category Id" [(ngModel)]="categoryId"/>&nbsp;
+    <button type="submit" class="btn btn-success" (click)="handleSubmit()">Search</button><br/>
+</section>
+<br>
+<section align="centre">
+    <table class="table table-bordered table-hover table-success table-striped" *ngIf="books">
+        <thead>
+            <tr class="text-info">
+                <th>Book Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>Isbn</th>
+                <th>Published date</th>
+                <th >Last updated date</th>
+                <th>Price</th>
+                <th>Category Id</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-light" *ngFor="let b of books">
+                <td>{{ b.bookId}} </td>
+                <td>{{ b.title }} </td>
+                <td>{{ b.author }} </td>
+                <td>{{ b.description }} </td>
+                <td>{{ b.isbn }} </td>
+                <td>{{ b.pubDate }} </td>
+                <td>{{ b.lastUpDate }} </td>
+                <td>{{b.price }} </td>
+                <td>{{b.categoryId}}</td>
+                </tr>
+        </tbody>
+      </table>
+</section>
+<button type="button" class="btn btn-primary" routerLink="/uheader/ubooks">Back</button> -->

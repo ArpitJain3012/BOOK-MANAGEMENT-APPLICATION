@@ -1,0 +1,24 @@
+<h3 style="color:limegreen;text-align: center;text-align: center;font-size: 30px;">Category List</h3>
+<app-msgbox *ngIf="err && !category">
+    <strong >loading ...please wait...</strong>
+</app-msgbox>
+<app-msgbox *ngIf="err" [isError]="true">
+    <strong >{{ err }}</strong>
+</app-msgbox>
+
+<table class="table table-bordered border-light table-hover" style="text-align: center;" *ngIf="category">
+    <thead>
+        <tr class="text-info">
+            <th>Category Id</th>
+            <th>Category Name</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-light" *ngFor="let cat of category" style="text-align: center;">
+            <td>{{ cat.categoryId}} </td>
+            <td>{{ cat.categoryName }} </td>
+            
+        </tr>
+    </tbody>
+</table>

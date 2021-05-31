@@ -1,0 +1,43 @@
+<h3 style="color:limegreen;text-align: center;">Review List</h3>
+
+<app-msgbox *ngIf = "err && !reviews">
+    <strong> loading pleases wait ... </strong>
+</app-msgbox>
+
+<app-msgbox *ngIf = "err" [isError]="true">
+    <strong> {{err}}</strong>
+</app-msgbox>
+
+<table class="table table-bordered border-light table-hover" *ngIf="reviews">
+    <thead>
+        <tr class="text-info">
+            <th>ReviewID</th>
+            <th>CustomerID</th>
+            <th>BookID</th>
+            <th>Headline</th>
+            <th>Comment</th>
+            <th>Rating </th>
+            <th>Review On </th>
+           
+            <th colspan="2"> Action</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of reviews" class="text-light">
+            <td>{{ r.reviewId }} </td>
+            <td>{{ r.custId }} </td>
+            <td> {{r.bookid}} </td>
+            <td>{{r.headline }} </td>
+            <td>{{ r.comment }} </td>
+            <td>{{ r.rating }} </td>
+            <td>{{ r.reviewOn }} </td>
+            
+            
+            <td><button class="btn btn-sm btn-danger" (click)="delete(r.reviewId)">Delete</button></td>
+            <td><a class="btn btn-sm btn-info" routerLink="/headcusts/reviews/edit/{{r.reviewId}}">Update</a></td>
+
+        </tr>
+    </tbody>
+</table>
+

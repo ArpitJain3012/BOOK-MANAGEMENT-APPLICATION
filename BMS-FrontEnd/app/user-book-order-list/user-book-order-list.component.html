@@ -1,0 +1,48 @@
+<h3 style="color:limegreen;text-align: center;">BookOrder List</h3>
+
+<app-msgbox *ngIf="err && !bookorder">
+    <strong> loading pleases wait ... </strong>
+</app-msgbox>
+
+<app-msgbox *ngIf="err" [isError]="true">
+    <strong> {{err}}</strong>
+</app-msgbox>
+
+<table class="table table-bordered border-light table-hover" *ngIf="bookorder">
+    <thead>
+        <tr class="text-info">
+            <th>OrderID</th>
+            <th>CustomerID</th>
+            <th>OrderDate</th>
+            <th>OrderTotal</th>
+            <th>Status</th>
+            <th>Payment Method</th>
+            <th>Recipient phone</th>
+            <th>Recipient Name</th>
+
+
+            <th colspan="2"> Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-light" *ngFor="let bo of bookorder">
+
+            <td>{{ bo.orderId }}</td>
+            <td>{{ bo.custId }}</td>
+            <td>{{ bo.orderDate }} </td>
+            <td>{{ bo.orderTotal }}</td>
+            <td>{{ bo.status }}</td>
+            <td>{{ bo.paymentMethod }}</td>
+            <td>{{ bo.recipientphone }}</td>
+            <td>{{ bo.recipientName }}</td>
+
+
+
+            <td><button class="btn btn-sm btn-danger" (click)="delete(bo.orderId)">Cancel Order</button></td>
+            <td><a class="btn btn-sm btn-info" routerLink="/uheader/ubookorder/uedit/{{bo.orderId}}">Update Order</a>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
