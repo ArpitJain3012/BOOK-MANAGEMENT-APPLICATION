@@ -26,7 +26,8 @@
         </div>
         <div class="form-group">
             <label class="form-control-label">Mobile :</label>
-            <input type="number" formControlName="mobileNumber" placeholder="Enter Mobile Number" class="form-control" />
+            <input type="number" formControlName="mobileNumber" placeholder="Enter Mobile Number"
+                class="form-control" />
             <div class="alert alert-danger" *ngIf="mnfc.invalid && (mnfc.touched || mnfc.dirty)">
                 <span *ngIf="mnfc.errors.required">This field is mandate</span>
                 <span *ngIf="mnfc.errors.pattern">Must contain 10 digits</span>
@@ -65,23 +66,34 @@
         </div>
         <div class="form-group">
             <label class="form-control-label">Country : </label>
-            <input type="text" formControlName="country" placeholder="Which country do you belong?" class="form-control" />
-        </div>
-        <div class="alert alert-danger"
-            *ngIf="this.countryfc.invalid && (this.countryfc.touched ||this.countryfc.dirty)">
-            <span *ngIf="countryfc.required">Country is Required</span>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label">Pincode :</label>
-            <input type="text" formControlName="pincode" placeholder="Enter pincode" class="form-control" />
-        </div>
-        <div class="alert alert-danger" *ngIf="this.pinfc.invalid && (this.pinfc.touched || this.pinfc.dirty)">
-            <span *ngIf="pinfc.errors.required">This field is mandate</span>
-        </div>
+            <select formControlName="status" class="form-control">
+                <option value="INDIA">INDIA
+                </option>
+                <option value="CANADA">CANADA
+                </option>
+                <option value="USA">USA
+                </option>
+                <option value="JAPAN">JAPAN
+                </option>
+                <option value="AUSTRALIA">AUSTRALIA</option>
+                <option value="ENGLAND">ENGLAND</option>
+                <option value="FRANCE">FRANCE</option>
+            </select>
+            <div class="alert alert-danger"
+                *ngIf="this.countryfc.invalid && (this.countryfc.touched ||this.countryfc.dirty)">
+                <span *ngIf="countryfc.required">Country is Required</span>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Pincode :</label>
+                <input type="text" formControlName="pincode" placeholder="Enter pincode" class="form-control" />
+            </div>
+            <div class="alert alert-danger" *ngIf="this.pinfc.invalid && (this.pinfc.touched || this.pinfc.dirty)">
+                <span *ngIf="pinfc.errors.required">This field is mandate</span>
+            </div>
 
-        <button class="btn btn-block btn-primary" [disabled]="custForm.invalid">
-            Save
-        </button>
-
+            <button class="btn btn-block btn-primary" [disabled]="custForm.invalid">
+                Save
+            </button>
+        </div>
     </form>
 </div>

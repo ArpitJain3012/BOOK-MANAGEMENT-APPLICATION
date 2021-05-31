@@ -38,7 +38,7 @@ export class UserBookOrderFormComponent implements OnInit {
     this.custIdfc = new FormControl(null);
     this.OrderDatefc = new FormControl(null, Validators.required);
     this.OrderTotalfc = new FormControl(null, [Validators.required, Validators.min(1)]);
-    this.statusfc = new FormControl("Placed", Validators.required);
+    this.statusfc = new FormControl("placed", Validators.required);
     this.paymentMethodfc = new FormControl(null);
     this.recipientphonefc = new FormControl(null, [Validators.required, Validators.pattern("[1-9][0-9]{9}")]);
     this.recipientNamefc = new FormControl(null, [Validators.required, Validators.minLength(3)]);

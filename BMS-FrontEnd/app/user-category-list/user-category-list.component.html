@@ -1,9 +1,9 @@
 <h3 style="color:limegreen;text-align: center;text-align: center;font-size: 30px;">Category List</h3>
 <app-msgbox *ngIf="err && !category">
-    <strong >loading ...please wait...</strong>
+    <strong class="text-warning">loading ...please wait...</strong>
 </app-msgbox>
 <app-msgbox *ngIf="err" [isError]="true">
-    <strong >{{ err }}</strong>
+    <strong class="text-warning">{{ err }}</strong>
 </app-msgbox>
 
 <table class="table table-bordered border-light table-hover" style="text-align: center;" *ngIf="category">

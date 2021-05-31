@@ -1,11 +1,11 @@
 <h3 style="color:limegreen;text-align: center;">Order Detail List</h3>
 
 <app-msgbox *ngIf = "err && !orderdetail">
-    <strong> loading pleases wait ... </strong>
+    <strong class="text-warning"> loading pleases wait ... </strong>
 </app-msgbox>
 
 <app-msgbox *ngIf = "err" [isError]="true">
-    <strong> {{err}}</strong>
+    <strong class="text-warning"> {{err}}</strong>
 </app-msgbox>
 
 <table class="table table-bordered border-light  table-hover" *ngIf="orderdetail">

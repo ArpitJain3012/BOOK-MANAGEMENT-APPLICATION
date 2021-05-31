@@ -37,7 +37,7 @@ export class CustomerFormComponent implements OnInit {
     this.housefc = new FormControl(null, Validators.required);
     this.pinfc = new FormControl(null, Validators.required);
     this.cityfc = new FormControl(null, Validators.required);
-    this.countryfc = new FormControl(null, Validators.required);
+    this.countryfc = new FormControl("INDIA", Validators.required);
 
     this.custForm = new FormGroup({
       customerId: this.custIdfc,

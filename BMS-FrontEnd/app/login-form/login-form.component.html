@@ -1,36 +1,36 @@
-<h1 class="p-4" style="font-style: italic;color: orange;text-align: center;background-color:cyan ;"> Book Management Application <i class="fa fa-book"></i></h1>
-<div class="col-sm-6 mx-auto row justify-content-center mt-5">
+<body>
+    <h1 class="p-4" style="font-style: italic;color: #FFD55A;text-align: center;background-color:#213970"> Book
+        Management Application <i class="fa fa-book"></i></h1>
+    <div class="col-sm-6 mx-auto row justify-content-center mt-5">
 
-    <form class="form text-center border border-light p-5" [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
-        <h1 class="text-light">Admin Login <i class="fa fa-user" aria-hidden="true"></i></h1>
-        <small class="text-danger">{{ msg }}</small>
-        <div class="form-group">
-            <label class="form-control-label text-light">Admin Email: <i class="fa fa-users" aria-hidden="true"></i></label>
-            <input type="email" formControlName="email" placeholder="Enter Admin Email" class="form-control" />
-            <div class="alert alert-danger" *ngIf="this.userEmailfc.invalid && (this.userEmailfc.touched || this.userEmailfc.dirty)">
-                <span *ngIf="userEmailfc.errors.required">Email is Required</span>
-                <span *ngIf="this.userEmailfc.errors.email">This field should be valid</span>
+        <form class="form text-center border border-light p-5" [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+            <h1 class="text-white bg-dark">Admin Login<i class="fa fa-user" aria-hidden="true"></i></h1>
+            <small class="text-danger">{{ msg }}</small>
+            <div class="form-group">
+                <label class="form-control-label text-white bg-dark">Admin Email: <i class="fa fa-users"
+                        aria-hidden="true"></i></label>
+                <input type="email" formControlName="email" placeholder="Enter Admin Email" class="form-control" />
+                <div class="alert alert-danger"
+                    *ngIf="this.userEmailfc.invalid && (this.userEmailfc.touched || this.userEmailfc.dirty)">
+                    <span *ngIf="userEmailfc.errors.required">Email is Required</span>
+                    <span *ngIf="this.userEmailfc.errors.email">This field should be valid</span>
+                </div>
             </div>
-        </div>
-    
-        <div class="form-group">
-            <label class="form-control-label text-light">Password: <i class="fa fa-key" aria-hidden="true"></i></label>
-            <input type="password" formControlName="password" placeholder="Enter Admin Password" class="form-control" />
-            <div class="alert alert-danger" *ngIf="passwordfc.invalid && (passwordfc.touched || passwordfc.dirty)">
-                <span *ngIf="passwordfc.errors.required">password is Required</span>
-                <span *ngIf="passwordfc.errors.pattern">This field should be valid</span>
+
+            <div class="form-group">
+                <label class="form-control-label text-white bg-dark">Password: <i class="fa fa-key"
+                        aria-hidden="true"></i></label>
+                <input type="password" formControlName="password" placeholder="Enter Admin Password"
+                    class="form-control" />
+                <div class="alert alert-danger" *ngIf="passwordfc.invalid && (passwordfc.touched || passwordfc.dirty)">
+                    <span *ngIf="passwordfc.errors.required">password is Required</span>
+                    <span *ngIf="passwordfc.errors.pattern">This field should be valid</span>
+                </div>
             </div>
-        </div>
 
-    <button class="btn btn-block btn-primary" [disabled]="!loginForm.valid">
-        Login as admin
-    </button>
-    </form>
-</div>
-
-
-
-
-
-
-
+            <button class="btn btn-block btn-primary" [disabled]="!loginForm.valid">
+                Login as admin
+            </button>
+        </form>
+    </div>
+</body>

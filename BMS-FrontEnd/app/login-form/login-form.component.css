@@ -1,0 +1,9 @@
+body{
+    background-image: url("src/assets/b.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-width: auto;
+    min-height: 120vh;
+}

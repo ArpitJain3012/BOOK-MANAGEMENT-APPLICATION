@@ -26,7 +26,7 @@ export class BookOrderFormComponent implements OnInit {
 
   isEditing: boolean;
 
-  status: string[];
+  // status: string[];
 
   paymentMethod: string[];
 
@@ -58,7 +58,7 @@ export class BookOrderFormComponent implements OnInit {
     });
 
     this.isEditing = false;
-    this.paymentMethod = ["UPI Payment", " Net Banking", " Debit/Credit", "Cash On Delivery"]
+    // this.paymentMethod = ["UPI Payment", " Net Banking", " Debit/Credit", "Cash On Delivery"]
 
   }
 
